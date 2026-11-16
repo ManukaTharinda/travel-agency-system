@@ -72,3 +72,23 @@ export type InvoiceItem = Prisma.InvoiceItemModel
  * 
  */
 export type InvoicePayment = Prisma.InvoicePaymentModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
+ * Model Account
+ * 
+ */
+export type Account = Prisma.AccountModel
+/**
+ * Model Verification
+ * 
+ */
+export type Verification = Prisma.VerificationModel
+/**
+ * Model AgencyDocumentSettings
+ * 
+ */
+export type AgencyDocumentSettings = Prisma.AgencyDocumentSettingsModel

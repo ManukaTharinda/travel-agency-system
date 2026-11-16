@@ -71,18 +71,19 @@ enum InvoiceStatus {
 // ==========================================
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime?
+  id            String  @id @default(cuid())
+  name          String
+  email         String  @unique
+  emailVerified Boolean @default(false)
   image         String?
-  passwordHash  String?
 
   platformRole PlatformRole @default(USER)
   isActive     Boolean      @default(true)
 
   memberships      AgencyMember[]
   createdCustomers Customer[]     @relation("CustomerCreatedBy")
+  sessions         Session[]
+  accounts         Account[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -100,11 +101,16 @@ model Agency {
   name String
   slug String @unique
 
-  legalName String?
-  email     String?
-  phone     String?
-  website   String?
-  logoUrl   String?
+  legalName    String?
+  email        String?
+  phone        String?
+  website      String?
+  logoUrl      String?
+  description  String?
+  facebookUrl  String?
+  instagramUrl String?
+  tiktokUrl    String?
+  linkedinUrl  String?
 
   addressLine1 String?
   addressLine2 String?
@@ -120,10 +126,11 @@ model Agency {
 
   status AgencyStatus @default(ACTIVE)
 
-  members     AgencyMember[]
-  customers   Customer[]
-  itineraries Itinerary[]
-  invoices    Invoice[]
+  members          AgencyMember[]
+  customers        Customer[]
+  itineraries      Itinerary[]
+  invoices         Invoice[]
+  documentSettings AgencyDocumentSettings?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -400,4 +407,86 @@ model InvoicePayment {
 
   @@index([invoiceId])
   @@index([paymentDate])
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Account {
+  id         String @id
+  accountId  String
+  providerId String
+  userId     String
+
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+
+  createdAt DateTime
+  updatedAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@index([identifier])
+}
+
+model AgencyDocumentSettings {
+  id       String @id @default(cuid())
+  agencyId String @unique
+
+  // Brand identity
+  primaryColor   String @default("#2563EB")
+  secondaryColor String @default("#0F172A")
+  accentColor    String @default("#F59E0B")
+  fontFamily     String @default("Arial")
+
+  // Company document branding
+  logoUrl        String?
+  headerImageUrl String?
+  footerImageUrl String?
+
+  // Itinerary settings
+  itineraryTemplateId String?
+  itineraryShowLogo   Boolean @default(true)
+  itineraryShowFooter Boolean @default(true)
+
+  // Invoice settings
+  invoiceTemplateId String?
+  invoiceShowLogo   Boolean @default(true)
+  invoiceShowFooter Boolean @default(true)
+
+  // Document footer
+  footerText String?
+
+  agency Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

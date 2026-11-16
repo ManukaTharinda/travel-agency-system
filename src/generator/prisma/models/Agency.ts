@@ -43,6 +43,11 @@ export type AgencyMinAggregateOutputType = {
   phone: string | null
   website: string | null
   logoUrl: string | null
+  description: string | null
+  facebookUrl: string | null
+  instagramUrl: string | null
+  tiktokUrl: string | null
+  linkedinUrl: string | null
   addressLine1: string | null
   addressLine2: string | null
   city: string | null
@@ -66,6 +71,11 @@ export type AgencyMaxAggregateOutputType = {
   phone: string | null
   website: string | null
   logoUrl: string | null
+  description: string | null
+  facebookUrl: string | null
+  instagramUrl: string | null
+  tiktokUrl: string | null
+  linkedinUrl: string | null
   addressLine1: string | null
   addressLine2: string | null
   city: string | null
@@ -89,6 +99,11 @@ export type AgencyCountAggregateOutputType = {
   phone: number
   website: number
   logoUrl: number
+  description: number
+  facebookUrl: number
+  instagramUrl: number
+  tiktokUrl: number
+  linkedinUrl: number
   addressLine1: number
   addressLine2: number
   city: number
@@ -122,6 +137,11 @@ export type AgencyMinAggregateInputType = {
   phone?: true
   website?: true
   logoUrl?: true
+  description?: true
+  facebookUrl?: true
+  instagramUrl?: true
+  tiktokUrl?: true
+  linkedinUrl?: true
   addressLine1?: true
   addressLine2?: true
   city?: true
@@ -145,6 +165,11 @@ export type AgencyMaxAggregateInputType = {
   phone?: true
   website?: true
   logoUrl?: true
+  description?: true
+  facebookUrl?: true
+  instagramUrl?: true
+  tiktokUrl?: true
+  linkedinUrl?: true
   addressLine1?: true
   addressLine2?: true
   city?: true
@@ -168,6 +193,11 @@ export type AgencyCountAggregateInputType = {
   phone?: true
   website?: true
   logoUrl?: true
+  description?: true
+  facebookUrl?: true
+  instagramUrl?: true
+  tiktokUrl?: true
+  linkedinUrl?: true
   addressLine1?: true
   addressLine2?: true
   city?: true
@@ -278,6 +308,11 @@ export type AgencyGroupByOutputType = {
   phone: string | null
   website: string | null
   logoUrl: string | null
+  description: string | null
+  facebookUrl: string | null
+  instagramUrl: string | null
+  tiktokUrl: string | null
+  linkedinUrl: string | null
   addressLine1: string | null
   addressLine2: string | null
   city: string | null
@@ -324,6 +359,11 @@ export type AgencyWhereInput = {
   phone?: Prisma.StringNullableFilter<"Agency"> | string | null
   website?: Prisma.StringNullableFilter<"Agency"> | string | null
   logoUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  description?: Prisma.StringNullableFilter<"Agency"> | string | null
+  facebookUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  instagramUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  tiktokUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  linkedinUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
   addressLine1?: Prisma.StringNullableFilter<"Agency"> | string | null
   addressLine2?: Prisma.StringNullableFilter<"Agency"> | string | null
   city?: Prisma.StringNullableFilter<"Agency"> | string | null
@@ -340,6 +380,7 @@ export type AgencyWhereInput = {
   customers?: Prisma.CustomerListRelationFilter
   itineraries?: Prisma.ItineraryListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  documentSettings?: Prisma.XOR<Prisma.AgencyDocumentSettingsNullableScalarRelationFilter, Prisma.AgencyDocumentSettingsWhereInput> | null
 }
 
 export type AgencyOrderByWithRelationInput = {
@@ -351,6 +392,11 @@ export type AgencyOrderByWithRelationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  tiktokUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   addressLine1?: Prisma.SortOrderInput | Prisma.SortOrder
   addressLine2?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -367,6 +413,7 @@ export type AgencyOrderByWithRelationInput = {
   customers?: Prisma.CustomerOrderByRelationAggregateInput
   itineraries?: Prisma.ItineraryOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  documentSettings?: Prisma.AgencyDocumentSettingsOrderByWithRelationInput
 }
 
 export type AgencyWhereUniqueInput = Prisma.AtLeast<{
@@ -381,6 +428,11 @@ export type AgencyWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringNullableFilter<"Agency"> | string | null
   website?: Prisma.StringNullableFilter<"Agency"> | string | null
   logoUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  description?: Prisma.StringNullableFilter<"Agency"> | string | null
+  facebookUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  instagramUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  tiktokUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
+  linkedinUrl?: Prisma.StringNullableFilter<"Agency"> | string | null
   addressLine1?: Prisma.StringNullableFilter<"Agency"> | string | null
   addressLine2?: Prisma.StringNullableFilter<"Agency"> | string | null
   city?: Prisma.StringNullableFilter<"Agency"> | string | null
@@ -397,6 +449,7 @@ export type AgencyWhereUniqueInput = Prisma.AtLeast<{
   customers?: Prisma.CustomerListRelationFilter
   itineraries?: Prisma.ItineraryListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  documentSettings?: Prisma.XOR<Prisma.AgencyDocumentSettingsNullableScalarRelationFilter, Prisma.AgencyDocumentSettingsWhereInput> | null
 }, "id" | "slug">
 
 export type AgencyOrderByWithAggregationInput = {
@@ -408,6 +461,11 @@ export type AgencyOrderByWithAggregationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  tiktokUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   addressLine1?: Prisma.SortOrderInput | Prisma.SortOrder
   addressLine2?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -439,6 +497,11 @@ export type AgencyScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
   website?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
   logoUrl?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
+  description?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
+  facebookUrl?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
+  instagramUrl?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
+  tiktokUrl?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
+  linkedinUrl?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
   addressLine1?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
   addressLine2?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
   city?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
@@ -462,6 +525,11 @@ export type AgencyCreateInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -478,6 +546,7 @@ export type AgencyCreateInput = {
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyUncheckedCreateInput = {
@@ -489,6 +558,11 @@ export type AgencyUncheckedCreateInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -505,6 +579,7 @@ export type AgencyUncheckedCreateInput = {
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyUpdateInput = {
@@ -516,6 +591,11 @@ export type AgencyUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -532,6 +612,7 @@ export type AgencyUpdateInput = {
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyUncheckedUpdateInput = {
@@ -543,6 +624,11 @@ export type AgencyUncheckedUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -559,6 +645,7 @@ export type AgencyUncheckedUpdateInput = {
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyCreateManyInput = {
@@ -570,6 +657,11 @@ export type AgencyCreateManyInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -593,6 +685,11 @@ export type AgencyUpdateManyMutationInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -616,6 +713,11 @@ export type AgencyUncheckedUpdateManyInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -639,6 +741,11 @@ export type AgencyCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrder
+  tiktokUrl?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
   addressLine1?: Prisma.SortOrder
   addressLine2?: Prisma.SortOrder
   city?: Prisma.SortOrder
@@ -666,6 +773,11 @@ export type AgencyMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrder
+  tiktokUrl?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
   addressLine1?: Prisma.SortOrder
   addressLine2?: Prisma.SortOrder
   city?: Prisma.SortOrder
@@ -689,6 +801,11 @@ export type AgencyMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrder
+  tiktokUrl?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
   addressLine1?: Prisma.SortOrder
   addressLine2?: Prisma.SortOrder
   city?: Prisma.SortOrder
@@ -780,6 +897,20 @@ export type AgencyUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AgencyUpdateToOneWithWhereWithoutInvoicesInput, Prisma.AgencyUpdateWithoutInvoicesInput>, Prisma.AgencyUncheckedUpdateWithoutInvoicesInput>
 }
 
+export type AgencyCreateNestedOneWithoutDocumentSettingsInput = {
+  create?: Prisma.XOR<Prisma.AgencyCreateWithoutDocumentSettingsInput, Prisma.AgencyUncheckedCreateWithoutDocumentSettingsInput>
+  connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutDocumentSettingsInput
+  connect?: Prisma.AgencyWhereUniqueInput
+}
+
+export type AgencyUpdateOneRequiredWithoutDocumentSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.AgencyCreateWithoutDocumentSettingsInput, Prisma.AgencyUncheckedCreateWithoutDocumentSettingsInput>
+  connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutDocumentSettingsInput
+  upsert?: Prisma.AgencyUpsertWithoutDocumentSettingsInput
+  connect?: Prisma.AgencyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgencyUpdateToOneWithWhereWithoutDocumentSettingsInput, Prisma.AgencyUpdateWithoutDocumentSettingsInput>, Prisma.AgencyUncheckedUpdateWithoutDocumentSettingsInput>
+}
+
 export type AgencyCreateWithoutMembersInput = {
   id?: string
   name: string
@@ -789,6 +920,11 @@ export type AgencyCreateWithoutMembersInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -804,6 +940,7 @@ export type AgencyCreateWithoutMembersInput = {
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyUncheckedCreateWithoutMembersInput = {
@@ -815,6 +952,11 @@ export type AgencyUncheckedCreateWithoutMembersInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -830,6 +972,7 @@ export type AgencyUncheckedCreateWithoutMembersInput = {
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyCreateOrConnectWithoutMembersInput = {
@@ -857,6 +1000,11 @@ export type AgencyUpdateWithoutMembersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -872,6 +1020,7 @@ export type AgencyUpdateWithoutMembersInput = {
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyUncheckedUpdateWithoutMembersInput = {
@@ -883,6 +1032,11 @@ export type AgencyUncheckedUpdateWithoutMembersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -898,6 +1052,7 @@ export type AgencyUncheckedUpdateWithoutMembersInput = {
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyCreateWithoutCustomersInput = {
@@ -909,6 +1064,11 @@ export type AgencyCreateWithoutCustomersInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -924,6 +1084,7 @@ export type AgencyCreateWithoutCustomersInput = {
   members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyUncheckedCreateWithoutCustomersInput = {
@@ -935,6 +1096,11 @@ export type AgencyUncheckedCreateWithoutCustomersInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -950,6 +1116,7 @@ export type AgencyUncheckedCreateWithoutCustomersInput = {
   members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyCreateOrConnectWithoutCustomersInput = {
@@ -977,6 +1144,11 @@ export type AgencyUpdateWithoutCustomersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -992,6 +1164,7 @@ export type AgencyUpdateWithoutCustomersInput = {
   members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyUncheckedUpdateWithoutCustomersInput = {
@@ -1003,6 +1176,11 @@ export type AgencyUncheckedUpdateWithoutCustomersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1018,6 +1196,7 @@ export type AgencyUncheckedUpdateWithoutCustomersInput = {
   members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyCreateWithoutItinerariesInput = {
@@ -1029,6 +1208,11 @@ export type AgencyCreateWithoutItinerariesInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -1044,6 +1228,7 @@ export type AgencyCreateWithoutItinerariesInput = {
   members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyUncheckedCreateWithoutItinerariesInput = {
@@ -1055,6 +1240,11 @@ export type AgencyUncheckedCreateWithoutItinerariesInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -1070,6 +1260,7 @@ export type AgencyUncheckedCreateWithoutItinerariesInput = {
   members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyCreateOrConnectWithoutItinerariesInput = {
@@ -1097,6 +1288,11 @@ export type AgencyUpdateWithoutItinerariesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1112,6 +1308,7 @@ export type AgencyUpdateWithoutItinerariesInput = {
   members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyUncheckedUpdateWithoutItinerariesInput = {
@@ -1123,6 +1320,11 @@ export type AgencyUncheckedUpdateWithoutItinerariesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1138,6 +1340,7 @@ export type AgencyUncheckedUpdateWithoutItinerariesInput = {
   members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyCreateWithoutInvoicesInput = {
@@ -1149,6 +1352,11 @@ export type AgencyCreateWithoutInvoicesInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -1164,6 +1372,7 @@ export type AgencyCreateWithoutInvoicesInput = {
   members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyUncheckedCreateWithoutInvoicesInput = {
@@ -1175,6 +1384,11 @@ export type AgencyUncheckedCreateWithoutInvoicesInput = {
   phone?: string | null
   website?: string | null
   logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
   addressLine1?: string | null
   addressLine2?: string | null
   city?: string | null
@@ -1190,6 +1404,7 @@ export type AgencyUncheckedCreateWithoutInvoicesInput = {
   members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyCreateOrConnectWithoutInvoicesInput = {
@@ -1217,6 +1432,11 @@ export type AgencyUpdateWithoutInvoicesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1232,6 +1452,7 @@ export type AgencyUpdateWithoutInvoicesInput = {
   members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyUncheckedUpdateWithoutInvoicesInput = {
@@ -1243,6 +1464,11 @@ export type AgencyUncheckedUpdateWithoutInvoicesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1258,6 +1484,151 @@ export type AgencyUncheckedUpdateWithoutInvoicesInput = {
   members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
+}
+
+export type AgencyCreateWithoutDocumentSettingsInput = {
+  id?: string
+  name: string
+  slug: string
+  legalName?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
+  addressLine1?: string | null
+  addressLine2?: string | null
+  city?: string | null
+  postalCode?: string | null
+  country?: string | null
+  currencyCode?: string
+  timezone?: string
+  invoicePrefix?: string
+  nextInvoiceNumber?: number
+  status?: $Enums.AgencyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
+  customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
+  itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+}
+
+export type AgencyUncheckedCreateWithoutDocumentSettingsInput = {
+  id?: string
+  name: string
+  slug: string
+  legalName?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
+  addressLine1?: string | null
+  addressLine2?: string | null
+  city?: string | null
+  postalCode?: string | null
+  country?: string | null
+  currencyCode?: string
+  timezone?: string
+  invoicePrefix?: string
+  nextInvoiceNumber?: number
+  status?: $Enums.AgencyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
+  itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+}
+
+export type AgencyCreateOrConnectWithoutDocumentSettingsInput = {
+  where: Prisma.AgencyWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgencyCreateWithoutDocumentSettingsInput, Prisma.AgencyUncheckedCreateWithoutDocumentSettingsInput>
+}
+
+export type AgencyUpsertWithoutDocumentSettingsInput = {
+  update: Prisma.XOR<Prisma.AgencyUpdateWithoutDocumentSettingsInput, Prisma.AgencyUncheckedUpdateWithoutDocumentSettingsInput>
+  create: Prisma.XOR<Prisma.AgencyCreateWithoutDocumentSettingsInput, Prisma.AgencyUncheckedCreateWithoutDocumentSettingsInput>
+  where?: Prisma.AgencyWhereInput
+}
+
+export type AgencyUpdateToOneWithWhereWithoutDocumentSettingsInput = {
+  where?: Prisma.AgencyWhereInput
+  data: Prisma.XOR<Prisma.AgencyUpdateWithoutDocumentSettingsInput, Prisma.AgencyUncheckedUpdateWithoutDocumentSettingsInput>
+}
+
+export type AgencyUpdateWithoutDocumentSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
+  customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
+  itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+}
+
+export type AgencyUncheckedUpdateWithoutDocumentSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
+  itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
 }
 
 
@@ -1327,6 +1698,11 @@ export type AgencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   phone?: boolean
   website?: boolean
   logoUrl?: boolean
+  description?: boolean
+  facebookUrl?: boolean
+  instagramUrl?: boolean
+  tiktokUrl?: boolean
+  linkedinUrl?: boolean
   addressLine1?: boolean
   addressLine2?: boolean
   city?: boolean
@@ -1343,6 +1719,7 @@ export type AgencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   customers?: boolean | Prisma.Agency$customersArgs<ExtArgs>
   itineraries?: boolean | Prisma.Agency$itinerariesArgs<ExtArgs>
   invoices?: boolean | Prisma.Agency$invoicesArgs<ExtArgs>
+  documentSettings?: boolean | Prisma.Agency$documentSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.AgencyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agency"]>
 
@@ -1355,6 +1732,11 @@ export type AgencySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   website?: boolean
   logoUrl?: boolean
+  description?: boolean
+  facebookUrl?: boolean
+  instagramUrl?: boolean
+  tiktokUrl?: boolean
+  linkedinUrl?: boolean
   addressLine1?: boolean
   addressLine2?: boolean
   city?: boolean
@@ -1378,6 +1760,11 @@ export type AgencySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   website?: boolean
   logoUrl?: boolean
+  description?: boolean
+  facebookUrl?: boolean
+  instagramUrl?: boolean
+  tiktokUrl?: boolean
+  linkedinUrl?: boolean
   addressLine1?: boolean
   addressLine2?: boolean
   city?: boolean
@@ -1401,6 +1788,11 @@ export type AgencySelectScalar = {
   phone?: boolean
   website?: boolean
   logoUrl?: boolean
+  description?: boolean
+  facebookUrl?: boolean
+  instagramUrl?: boolean
+  tiktokUrl?: boolean
+  linkedinUrl?: boolean
   addressLine1?: boolean
   addressLine2?: boolean
   city?: boolean
@@ -1415,12 +1807,13 @@ export type AgencySelectScalar = {
   updatedAt?: boolean
 }
 
-export type AgencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "legalName" | "email" | "phone" | "website" | "logoUrl" | "addressLine1" | "addressLine2" | "city" | "postalCode" | "country" | "currencyCode" | "timezone" | "invoicePrefix" | "nextInvoiceNumber" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["agency"]>
+export type AgencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "legalName" | "email" | "phone" | "website" | "logoUrl" | "description" | "facebookUrl" | "instagramUrl" | "tiktokUrl" | "linkedinUrl" | "addressLine1" | "addressLine2" | "city" | "postalCode" | "country" | "currencyCode" | "timezone" | "invoicePrefix" | "nextInvoiceNumber" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["agency"]>
 export type AgencyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.Agency$membersArgs<ExtArgs>
   customers?: boolean | Prisma.Agency$customersArgs<ExtArgs>
   itineraries?: boolean | Prisma.Agency$itinerariesArgs<ExtArgs>
   invoices?: boolean | Prisma.Agency$invoicesArgs<ExtArgs>
+  documentSettings?: boolean | Prisma.Agency$documentSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.AgencyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AgencyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1433,6 +1826,7 @@ export type $AgencyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     customers: Prisma.$CustomerPayload<ExtArgs>[]
     itineraries: Prisma.$ItineraryPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    documentSettings: Prisma.$AgencyDocumentSettingsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1443,6 +1837,11 @@ export type $AgencyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     phone: string | null
     website: string | null
     logoUrl: string | null
+    description: string | null
+    facebookUrl: string | null
+    instagramUrl: string | null
+    tiktokUrl: string | null
+    linkedinUrl: string | null
     addressLine1: string | null
     addressLine2: string | null
     city: string | null
@@ -1853,6 +2252,7 @@ export interface Prisma__AgencyClient<T, Null = never, ExtArgs extends runtime.T
   customers<T extends Prisma.Agency$customersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$customersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   itineraries<T extends Prisma.Agency$itinerariesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$itinerariesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Agency$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentSettings<T extends Prisma.Agency$documentSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$documentSettingsArgs<ExtArgs>>): Prisma.Prisma__AgencyDocumentSettingsClient<runtime.Types.Result.GetResult<Prisma.$AgencyDocumentSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1890,6 +2290,11 @@ export interface AgencyFieldRefs {
   readonly phone: Prisma.FieldRef<"Agency", 'String'>
   readonly website: Prisma.FieldRef<"Agency", 'String'>
   readonly logoUrl: Prisma.FieldRef<"Agency", 'String'>
+  readonly description: Prisma.FieldRef<"Agency", 'String'>
+  readonly facebookUrl: Prisma.FieldRef<"Agency", 'String'>
+  readonly instagramUrl: Prisma.FieldRef<"Agency", 'String'>
+  readonly tiktokUrl: Prisma.FieldRef<"Agency", 'String'>
+  readonly linkedinUrl: Prisma.FieldRef<"Agency", 'String'>
   readonly addressLine1: Prisma.FieldRef<"Agency", 'String'>
   readonly addressLine2: Prisma.FieldRef<"Agency", 'String'>
   readonly city: Prisma.FieldRef<"Agency", 'String'>
@@ -2388,6 +2793,25 @@ export type Agency$invoicesArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Agency.documentSettings
+ */
+export type Agency$documentSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgencyDocumentSettings
+   */
+  select?: Prisma.AgencyDocumentSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AgencyDocumentSettings
+   */
+  omit?: Prisma.AgencyDocumentSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgencyDocumentSettingsInclude<ExtArgs> | null
+  where?: Prisma.AgencyDocumentSettingsWhereInput
 }
 
 /**

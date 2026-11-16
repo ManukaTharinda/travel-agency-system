@@ -509,6 +509,10 @@ export type ItineraryDayUncheckedUpdateManyWithoutItineraryNestedInput = {
   deleteMany?: Prisma.ItineraryDayScalarWhereInput | Prisma.ItineraryDayScalarWhereInput[]
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type ItineraryDayCreateNestedOneWithoutItemsInput = {
   create?: Prisma.XOR<Prisma.ItineraryDayCreateWithoutItemsInput, Prisma.ItineraryDayUncheckedCreateWithoutItemsInput>
   connectOrCreate?: Prisma.ItineraryDayCreateOrConnectWithoutItemsInput
