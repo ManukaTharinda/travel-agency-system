@@ -62,6 +62,9 @@ export const ModelName = {
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
   InvoicePayment: 'InvoicePayment',
+  Quotation: 'Quotation',
+  QuotationItem: 'QuotationItem',
+  AgencyBillingSettings: 'AgencyBillingSettings',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
@@ -122,6 +125,8 @@ export const AgencyScalarFieldEnum = {
   timezone: 'timezone',
   invoicePrefix: 'invoicePrefix',
   nextInvoiceNumber: 'nextInvoiceNumber',
+  quotationPrefix: 'quotationPrefix',
+  nextQuotationNumber: 'nextQuotationNumber',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -240,6 +245,7 @@ export const InvoiceScalarFieldEnum = {
   agencyId: 'agencyId',
   customerId: 'customerId',
   sourceItineraryId: 'sourceItineraryId',
+  sourceQuotationId: 'sourceQuotationId',
   invoiceNumber: 'invoiceNumber',
   status: 'status',
   issueDate: 'issueDate',
@@ -262,6 +268,12 @@ export const InvoiceScalarFieldEnum = {
   balanceDue: 'balanceDue',
   notes: 'notes',
   paymentTerms: 'paymentTerms',
+  bankName: 'bankName',
+  bankBranch: 'bankBranch',
+  accountName: 'accountName',
+  accountNumber: 'accountNumber',
+  swiftCode: 'swiftCode',
+  paymentInstructions: 'paymentInstructions',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -299,6 +311,79 @@ export const InvoicePaymentScalarFieldEnum = {
 } as const
 
 export type InvoicePaymentScalarFieldEnum = (typeof InvoicePaymentScalarFieldEnum)[keyof typeof InvoicePaymentScalarFieldEnum]
+
+
+export const QuotationScalarFieldEnum = {
+  id: 'id',
+  agencyId: 'agencyId',
+  customerId: 'customerId',
+  sourceItineraryId: 'sourceItineraryId',
+  quotationNumber: 'quotationNumber',
+  status: 'status',
+  issueDate: 'issueDate',
+  validUntil: 'validUntil',
+  agencyName: 'agencyName',
+  agencyEmail: 'agencyEmail',
+  agencyPhone: 'agencyPhone',
+  agencyAddress: 'agencyAddress',
+  agencyLogoUrl: 'agencyLogoUrl',
+  customerName: 'customerName',
+  customerEmail: 'customerEmail',
+  customerPhone: 'customerPhone',
+  customerAddress: 'customerAddress',
+  currencyCode: 'currencyCode',
+  subtotal: 'subtotal',
+  discount: 'discount',
+  tax: 'tax',
+  totalAmount: 'totalAmount',
+  notes: 'notes',
+  termsAndConditions: 'termsAndConditions',
+  rejectionReason: 'rejectionReason',
+  confirmedAt: 'confirmedAt',
+  rejectedAt: 'rejectedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
+
+
+export const QuotationItemScalarFieldEnum = {
+  id: 'id',
+  quotationId: 'quotationId',
+  category: 'category',
+  name: 'name',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  lineTotal: 'lineTotal',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
+export const AgencyBillingSettingsScalarFieldEnum = {
+  id: 'id',
+  agencyId: 'agencyId',
+  bankName: 'bankName',
+  bankBranch: 'bankBranch',
+  accountName: 'accountName',
+  accountNumber: 'accountNumber',
+  swiftCode: 'swiftCode',
+  paymentInstructions: 'paymentInstructions',
+  defaultPaymentTerms: 'defaultPaymentTerms',
+  defaultTaxRate: 'defaultTaxRate',
+  taxRegistrationNumber: 'taxRegistrationNumber',
+  quotationValidityDays: 'quotationValidityDays',
+  quotationTerms: 'quotationTerms',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgencyBillingSettingsScalarFieldEnum = (typeof AgencyBillingSettingsScalarFieldEnum)[keyof typeof AgencyBillingSettingsScalarFieldEnum]
 
 
 export const SessionScalarFieldEnum = {

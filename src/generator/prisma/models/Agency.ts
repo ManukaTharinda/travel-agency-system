@@ -28,10 +28,12 @@ export type AggregateAgency = {
 
 export type AgencyAvgAggregateOutputType = {
   nextInvoiceNumber: number | null
+  nextQuotationNumber: number | null
 }
 
 export type AgencySumAggregateOutputType = {
   nextInvoiceNumber: number | null
+  nextQuotationNumber: number | null
 }
 
 export type AgencyMinAggregateOutputType = {
@@ -57,6 +59,8 @@ export type AgencyMinAggregateOutputType = {
   timezone: string | null
   invoicePrefix: string | null
   nextInvoiceNumber: number | null
+  quotationPrefix: string | null
+  nextQuotationNumber: number | null
   status: $Enums.AgencyStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -85,6 +89,8 @@ export type AgencyMaxAggregateOutputType = {
   timezone: string | null
   invoicePrefix: string | null
   nextInvoiceNumber: number | null
+  quotationPrefix: string | null
+  nextQuotationNumber: number | null
   status: $Enums.AgencyStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -113,6 +119,8 @@ export type AgencyCountAggregateOutputType = {
   timezone: number
   invoicePrefix: number
   nextInvoiceNumber: number
+  quotationPrefix: number
+  nextQuotationNumber: number
   status: number
   createdAt: number
   updatedAt: number
@@ -122,10 +130,12 @@ export type AgencyCountAggregateOutputType = {
 
 export type AgencyAvgAggregateInputType = {
   nextInvoiceNumber?: true
+  nextQuotationNumber?: true
 }
 
 export type AgencySumAggregateInputType = {
   nextInvoiceNumber?: true
+  nextQuotationNumber?: true
 }
 
 export type AgencyMinAggregateInputType = {
@@ -151,6 +161,8 @@ export type AgencyMinAggregateInputType = {
   timezone?: true
   invoicePrefix?: true
   nextInvoiceNumber?: true
+  quotationPrefix?: true
+  nextQuotationNumber?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -179,6 +191,8 @@ export type AgencyMaxAggregateInputType = {
   timezone?: true
   invoicePrefix?: true
   nextInvoiceNumber?: true
+  quotationPrefix?: true
+  nextQuotationNumber?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -207,6 +221,8 @@ export type AgencyCountAggregateInputType = {
   timezone?: true
   invoicePrefix?: true
   nextInvoiceNumber?: true
+  quotationPrefix?: true
+  nextQuotationNumber?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -322,6 +338,8 @@ export type AgencyGroupByOutputType = {
   timezone: string
   invoicePrefix: string
   nextInvoiceNumber: number
+  quotationPrefix: string
+  nextQuotationNumber: number
   status: $Enums.AgencyStatus
   createdAt: Date
   updatedAt: Date
@@ -373,6 +391,8 @@ export type AgencyWhereInput = {
   timezone?: Prisma.StringFilter<"Agency"> | string
   invoicePrefix?: Prisma.StringFilter<"Agency"> | string
   nextInvoiceNumber?: Prisma.IntFilter<"Agency"> | number
+  quotationPrefix?: Prisma.StringFilter<"Agency"> | string
+  nextQuotationNumber?: Prisma.IntFilter<"Agency"> | number
   status?: Prisma.EnumAgencyStatusFilter<"Agency"> | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFilter<"Agency"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Agency"> | Date | string
@@ -380,6 +400,8 @@ export type AgencyWhereInput = {
   customers?: Prisma.CustomerListRelationFilter
   itineraries?: Prisma.ItineraryListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
+  billingSettings?: Prisma.XOR<Prisma.AgencyBillingSettingsNullableScalarRelationFilter, Prisma.AgencyBillingSettingsWhereInput> | null
   documentSettings?: Prisma.XOR<Prisma.AgencyDocumentSettingsNullableScalarRelationFilter, Prisma.AgencyDocumentSettingsWhereInput> | null
 }
 
@@ -406,6 +428,8 @@ export type AgencyOrderByWithRelationInput = {
   timezone?: Prisma.SortOrder
   invoicePrefix?: Prisma.SortOrder
   nextInvoiceNumber?: Prisma.SortOrder
+  quotationPrefix?: Prisma.SortOrder
+  nextQuotationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -413,6 +437,8 @@ export type AgencyOrderByWithRelationInput = {
   customers?: Prisma.CustomerOrderByRelationAggregateInput
   itineraries?: Prisma.ItineraryOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  quotations?: Prisma.QuotationOrderByRelationAggregateInput
+  billingSettings?: Prisma.AgencyBillingSettingsOrderByWithRelationInput
   documentSettings?: Prisma.AgencyDocumentSettingsOrderByWithRelationInput
 }
 
@@ -442,6 +468,8 @@ export type AgencyWhereUniqueInput = Prisma.AtLeast<{
   timezone?: Prisma.StringFilter<"Agency"> | string
   invoicePrefix?: Prisma.StringFilter<"Agency"> | string
   nextInvoiceNumber?: Prisma.IntFilter<"Agency"> | number
+  quotationPrefix?: Prisma.StringFilter<"Agency"> | string
+  nextQuotationNumber?: Prisma.IntFilter<"Agency"> | number
   status?: Prisma.EnumAgencyStatusFilter<"Agency"> | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFilter<"Agency"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Agency"> | Date | string
@@ -449,6 +477,8 @@ export type AgencyWhereUniqueInput = Prisma.AtLeast<{
   customers?: Prisma.CustomerListRelationFilter
   itineraries?: Prisma.ItineraryListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
+  billingSettings?: Prisma.XOR<Prisma.AgencyBillingSettingsNullableScalarRelationFilter, Prisma.AgencyBillingSettingsWhereInput> | null
   documentSettings?: Prisma.XOR<Prisma.AgencyDocumentSettingsNullableScalarRelationFilter, Prisma.AgencyDocumentSettingsWhereInput> | null
 }, "id" | "slug">
 
@@ -475,6 +505,8 @@ export type AgencyOrderByWithAggregationInput = {
   timezone?: Prisma.SortOrder
   invoicePrefix?: Prisma.SortOrder
   nextInvoiceNumber?: Prisma.SortOrder
+  quotationPrefix?: Prisma.SortOrder
+  nextQuotationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -511,6 +543,8 @@ export type AgencyScalarWhereWithAggregatesInput = {
   timezone?: Prisma.StringWithAggregatesFilter<"Agency"> | string
   invoicePrefix?: Prisma.StringWithAggregatesFilter<"Agency"> | string
   nextInvoiceNumber?: Prisma.IntWithAggregatesFilter<"Agency"> | number
+  quotationPrefix?: Prisma.StringWithAggregatesFilter<"Agency"> | string
+  nextQuotationNumber?: Prisma.IntWithAggregatesFilter<"Agency"> | number
   status?: Prisma.EnumAgencyStatusWithAggregatesFilter<"Agency"> | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Agency"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Agency"> | Date | string
@@ -539,6 +573,8 @@ export type AgencyCreateInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -546,6 +582,8 @@ export type AgencyCreateInput = {
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
@@ -572,6 +610,8 @@ export type AgencyUncheckedCreateInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -579,6 +619,8 @@ export type AgencyUncheckedCreateInput = {
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
@@ -605,6 +647,8 @@ export type AgencyUpdateInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -612,6 +656,8 @@ export type AgencyUpdateInput = {
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
@@ -638,6 +684,8 @@ export type AgencyUncheckedUpdateInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -645,6 +693,8 @@ export type AgencyUncheckedUpdateInput = {
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
@@ -671,6 +721,8 @@ export type AgencyCreateManyInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -699,6 +751,8 @@ export type AgencyUpdateManyMutationInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -727,6 +781,8 @@ export type AgencyUncheckedUpdateManyInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -755,6 +811,8 @@ export type AgencyCountOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   invoicePrefix?: Prisma.SortOrder
   nextInvoiceNumber?: Prisma.SortOrder
+  quotationPrefix?: Prisma.SortOrder
+  nextQuotationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -762,6 +820,7 @@ export type AgencyCountOrderByAggregateInput = {
 
 export type AgencyAvgOrderByAggregateInput = {
   nextInvoiceNumber?: Prisma.SortOrder
+  nextQuotationNumber?: Prisma.SortOrder
 }
 
 export type AgencyMaxOrderByAggregateInput = {
@@ -787,6 +846,8 @@ export type AgencyMaxOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   invoicePrefix?: Prisma.SortOrder
   nextInvoiceNumber?: Prisma.SortOrder
+  quotationPrefix?: Prisma.SortOrder
+  nextQuotationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -815,6 +876,8 @@ export type AgencyMinOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   invoicePrefix?: Prisma.SortOrder
   nextInvoiceNumber?: Prisma.SortOrder
+  quotationPrefix?: Prisma.SortOrder
+  nextQuotationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -822,6 +885,7 @@ export type AgencyMinOrderByAggregateInput = {
 
 export type AgencySumOrderByAggregateInput = {
   nextInvoiceNumber?: Prisma.SortOrder
+  nextQuotationNumber?: Prisma.SortOrder
 }
 
 export type AgencyScalarRelationFilter = {
@@ -897,6 +961,34 @@ export type AgencyUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AgencyUpdateToOneWithWhereWithoutInvoicesInput, Prisma.AgencyUpdateWithoutInvoicesInput>, Prisma.AgencyUncheckedUpdateWithoutInvoicesInput>
 }
 
+export type AgencyCreateNestedOneWithoutQuotationsInput = {
+  create?: Prisma.XOR<Prisma.AgencyCreateWithoutQuotationsInput, Prisma.AgencyUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutQuotationsInput
+  connect?: Prisma.AgencyWhereUniqueInput
+}
+
+export type AgencyUpdateOneRequiredWithoutQuotationsNestedInput = {
+  create?: Prisma.XOR<Prisma.AgencyCreateWithoutQuotationsInput, Prisma.AgencyUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutQuotationsInput
+  upsert?: Prisma.AgencyUpsertWithoutQuotationsInput
+  connect?: Prisma.AgencyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgencyUpdateToOneWithWhereWithoutQuotationsInput, Prisma.AgencyUpdateWithoutQuotationsInput>, Prisma.AgencyUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type AgencyCreateNestedOneWithoutBillingSettingsInput = {
+  create?: Prisma.XOR<Prisma.AgencyCreateWithoutBillingSettingsInput, Prisma.AgencyUncheckedCreateWithoutBillingSettingsInput>
+  connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutBillingSettingsInput
+  connect?: Prisma.AgencyWhereUniqueInput
+}
+
+export type AgencyUpdateOneRequiredWithoutBillingSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.AgencyCreateWithoutBillingSettingsInput, Prisma.AgencyUncheckedCreateWithoutBillingSettingsInput>
+  connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutBillingSettingsInput
+  upsert?: Prisma.AgencyUpsertWithoutBillingSettingsInput
+  connect?: Prisma.AgencyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgencyUpdateToOneWithWhereWithoutBillingSettingsInput, Prisma.AgencyUpdateWithoutBillingSettingsInput>, Prisma.AgencyUncheckedUpdateWithoutBillingSettingsInput>
+}
+
 export type AgencyCreateNestedOneWithoutDocumentSettingsInput = {
   create?: Prisma.XOR<Prisma.AgencyCreateWithoutDocumentSettingsInput, Prisma.AgencyUncheckedCreateWithoutDocumentSettingsInput>
   connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutDocumentSettingsInput
@@ -934,12 +1026,16 @@ export type AgencyCreateWithoutMembersInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
@@ -966,12 +1062,16 @@ export type AgencyUncheckedCreateWithoutMembersInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
@@ -1014,12 +1114,16 @@ export type AgencyUpdateWithoutMembersInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1046,12 +1150,16 @@ export type AgencyUncheckedUpdateWithoutMembersInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1078,12 +1186,16 @@ export type AgencyCreateWithoutCustomersInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
@@ -1110,12 +1222,16 @@ export type AgencyUncheckedCreateWithoutCustomersInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
@@ -1158,12 +1274,16 @@ export type AgencyUpdateWithoutCustomersInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1190,12 +1310,16 @@ export type AgencyUncheckedUpdateWithoutCustomersInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1222,12 +1346,16 @@ export type AgencyCreateWithoutItinerariesInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
@@ -1254,12 +1382,16 @@ export type AgencyUncheckedCreateWithoutItinerariesInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
@@ -1302,12 +1434,16 @@ export type AgencyUpdateWithoutItinerariesInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1334,12 +1470,16 @@ export type AgencyUncheckedUpdateWithoutItinerariesInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1366,12 +1506,16 @@ export type AgencyCreateWithoutInvoicesInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
 }
 
@@ -1398,12 +1542,16 @@ export type AgencyUncheckedCreateWithoutInvoicesInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedCreateNestedOneWithoutAgencyInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
@@ -1446,12 +1594,16 @@ export type AgencyUpdateWithoutInvoicesInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUpdateOneWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1478,12 +1630,336 @@ export type AgencyUncheckedUpdateWithoutInvoicesInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedUpdateOneWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
+}
+
+export type AgencyCreateWithoutQuotationsInput = {
+  id?: string
+  name: string
+  slug: string
+  legalName?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
+  addressLine1?: string | null
+  addressLine2?: string | null
+  city?: string | null
+  postalCode?: string | null
+  country?: string | null
+  currencyCode?: string
+  timezone?: string
+  invoicePrefix?: string
+  nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
+  status?: $Enums.AgencyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
+  customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
+  itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsCreateNestedOneWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
+}
+
+export type AgencyUncheckedCreateWithoutQuotationsInput = {
+  id?: string
+  name: string
+  slug: string
+  legalName?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
+  addressLine1?: string | null
+  addressLine2?: string | null
+  city?: string | null
+  postalCode?: string | null
+  country?: string | null
+  currencyCode?: string
+  timezone?: string
+  invoicePrefix?: string
+  nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
+  status?: $Enums.AgencyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
+  itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedCreateNestedOneWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
+}
+
+export type AgencyCreateOrConnectWithoutQuotationsInput = {
+  where: Prisma.AgencyWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgencyCreateWithoutQuotationsInput, Prisma.AgencyUncheckedCreateWithoutQuotationsInput>
+}
+
+export type AgencyUpsertWithoutQuotationsInput = {
+  update: Prisma.XOR<Prisma.AgencyUpdateWithoutQuotationsInput, Prisma.AgencyUncheckedUpdateWithoutQuotationsInput>
+  create: Prisma.XOR<Prisma.AgencyCreateWithoutQuotationsInput, Prisma.AgencyUncheckedCreateWithoutQuotationsInput>
+  where?: Prisma.AgencyWhereInput
+}
+
+export type AgencyUpdateToOneWithWhereWithoutQuotationsInput = {
+  where?: Prisma.AgencyWhereInput
+  data: Prisma.XOR<Prisma.AgencyUpdateWithoutQuotationsInput, Prisma.AgencyUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type AgencyUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
+  customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
+  itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUpdateOneWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
+}
+
+export type AgencyUncheckedUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
+  itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedUpdateOneWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
+}
+
+export type AgencyCreateWithoutBillingSettingsInput = {
+  id?: string
+  name: string
+  slug: string
+  legalName?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
+  addressLine1?: string | null
+  addressLine2?: string | null
+  city?: string | null
+  postalCode?: string | null
+  country?: string | null
+  currencyCode?: string
+  timezone?: string
+  invoicePrefix?: string
+  nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
+  status?: $Enums.AgencyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  members?: Prisma.AgencyMemberCreateNestedManyWithoutAgencyInput
+  customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
+  itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsCreateNestedOneWithoutAgencyInput
+}
+
+export type AgencyUncheckedCreateWithoutBillingSettingsInput = {
+  id?: string
+  name: string
+  slug: string
+  legalName?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  logoUrl?: string | null
+  description?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  tiktokUrl?: string | null
+  linkedinUrl?: string | null
+  addressLine1?: string | null
+  addressLine2?: string | null
+  city?: string | null
+  postalCode?: string | null
+  country?: string | null
+  currencyCode?: string
+  timezone?: string
+  invoicePrefix?: string
+  nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
+  status?: $Enums.AgencyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  members?: Prisma.AgencyMemberUncheckedCreateNestedManyWithoutAgencyInput
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
+  itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAgencyInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUncheckedCreateNestedOneWithoutAgencyInput
+}
+
+export type AgencyCreateOrConnectWithoutBillingSettingsInput = {
+  where: Prisma.AgencyWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgencyCreateWithoutBillingSettingsInput, Prisma.AgencyUncheckedCreateWithoutBillingSettingsInput>
+}
+
+export type AgencyUpsertWithoutBillingSettingsInput = {
+  update: Prisma.XOR<Prisma.AgencyUpdateWithoutBillingSettingsInput, Prisma.AgencyUncheckedUpdateWithoutBillingSettingsInput>
+  create: Prisma.XOR<Prisma.AgencyCreateWithoutBillingSettingsInput, Prisma.AgencyUncheckedCreateWithoutBillingSettingsInput>
+  where?: Prisma.AgencyWhereInput
+}
+
+export type AgencyUpdateToOneWithWhereWithoutBillingSettingsInput = {
+  where?: Prisma.AgencyWhereInput
+  data: Prisma.XOR<Prisma.AgencyUpdateWithoutBillingSettingsInput, Prisma.AgencyUncheckedUpdateWithoutBillingSettingsInput>
+}
+
+export type AgencyUpdateWithoutBillingSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.AgencyMemberUpdateManyWithoutAgencyNestedInput
+  customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
+  itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutAgencyNestedInput
+  documentSettings?: Prisma.AgencyDocumentSettingsUpdateOneWithoutAgencyNestedInput
+}
+
+export type AgencyUncheckedUpdateWithoutBillingSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiktokUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.AgencyMemberUncheckedUpdateManyWithoutAgencyNestedInput
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
+  itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAgencyNestedInput
   documentSettings?: Prisma.AgencyDocumentSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
@@ -1510,6 +1986,8 @@ export type AgencyCreateWithoutDocumentSettingsInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1517,6 +1995,8 @@ export type AgencyCreateWithoutDocumentSettingsInput = {
   customers?: Prisma.CustomerCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyUncheckedCreateWithoutDocumentSettingsInput = {
@@ -1542,6 +2022,8 @@ export type AgencyUncheckedCreateWithoutDocumentSettingsInput = {
   timezone?: string
   invoicePrefix?: string
   nextInvoiceNumber?: number
+  quotationPrefix?: string
+  nextQuotationNumber?: number
   status?: $Enums.AgencyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1549,6 +2031,8 @@ export type AgencyUncheckedCreateWithoutDocumentSettingsInput = {
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutAgencyInput
   itineraries?: Prisma.ItineraryUncheckedCreateNestedManyWithoutAgencyInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAgencyInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAgencyInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedCreateNestedOneWithoutAgencyInput
 }
 
 export type AgencyCreateOrConnectWithoutDocumentSettingsInput = {
@@ -1590,6 +2074,8 @@ export type AgencyUpdateWithoutDocumentSettingsInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1597,6 +2083,8 @@ export type AgencyUpdateWithoutDocumentSettingsInput = {
   customers?: Prisma.CustomerUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUpdateOneWithoutAgencyNestedInput
 }
 
 export type AgencyUncheckedUpdateWithoutDocumentSettingsInput = {
@@ -1622,6 +2110,8 @@ export type AgencyUncheckedUpdateWithoutDocumentSettingsInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextInvoiceNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextQuotationNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumAgencyStatusFieldUpdateOperationsInput | $Enums.AgencyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1629,6 +2119,8 @@ export type AgencyUncheckedUpdateWithoutDocumentSettingsInput = {
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutAgencyNestedInput
   itineraries?: Prisma.ItineraryUncheckedUpdateManyWithoutAgencyNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAgencyNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAgencyNestedInput
+  billingSettings?: Prisma.AgencyBillingSettingsUncheckedUpdateOneWithoutAgencyNestedInput
 }
 
 
@@ -1641,6 +2133,7 @@ export type AgencyCountOutputType = {
   customers: number
   itineraries: number
   invoices: number
+  quotations: number
 }
 
 export type AgencyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1648,6 +2141,7 @@ export type AgencyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   customers?: boolean | AgencyCountOutputTypeCountCustomersArgs
   itineraries?: boolean | AgencyCountOutputTypeCountItinerariesArgs
   invoices?: boolean | AgencyCountOutputTypeCountInvoicesArgs
+  quotations?: boolean | AgencyCountOutputTypeCountQuotationsArgs
 }
 
 /**
@@ -1688,6 +2182,13 @@ export type AgencyCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types
   where?: Prisma.InvoiceWhereInput
 }
 
+/**
+ * AgencyCountOutputType without action
+ */
+export type AgencyCountOutputTypeCountQuotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationWhereInput
+}
+
 
 export type AgencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1712,6 +2213,8 @@ export type AgencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   timezone?: boolean
   invoicePrefix?: boolean
   nextInvoiceNumber?: boolean
+  quotationPrefix?: boolean
+  nextQuotationNumber?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1719,6 +2222,8 @@ export type AgencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   customers?: boolean | Prisma.Agency$customersArgs<ExtArgs>
   itineraries?: boolean | Prisma.Agency$itinerariesArgs<ExtArgs>
   invoices?: boolean | Prisma.Agency$invoicesArgs<ExtArgs>
+  quotations?: boolean | Prisma.Agency$quotationsArgs<ExtArgs>
+  billingSettings?: boolean | Prisma.Agency$billingSettingsArgs<ExtArgs>
   documentSettings?: boolean | Prisma.Agency$documentSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.AgencyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agency"]>
@@ -1746,6 +2251,8 @@ export type AgencySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   timezone?: boolean
   invoicePrefix?: boolean
   nextInvoiceNumber?: boolean
+  quotationPrefix?: boolean
+  nextQuotationNumber?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1774,6 +2281,8 @@ export type AgencySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   timezone?: boolean
   invoicePrefix?: boolean
   nextInvoiceNumber?: boolean
+  quotationPrefix?: boolean
+  nextQuotationNumber?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1802,17 +2311,21 @@ export type AgencySelectScalar = {
   timezone?: boolean
   invoicePrefix?: boolean
   nextInvoiceNumber?: boolean
+  quotationPrefix?: boolean
+  nextQuotationNumber?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AgencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "legalName" | "email" | "phone" | "website" | "logoUrl" | "description" | "facebookUrl" | "instagramUrl" | "tiktokUrl" | "linkedinUrl" | "addressLine1" | "addressLine2" | "city" | "postalCode" | "country" | "currencyCode" | "timezone" | "invoicePrefix" | "nextInvoiceNumber" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["agency"]>
+export type AgencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "legalName" | "email" | "phone" | "website" | "logoUrl" | "description" | "facebookUrl" | "instagramUrl" | "tiktokUrl" | "linkedinUrl" | "addressLine1" | "addressLine2" | "city" | "postalCode" | "country" | "currencyCode" | "timezone" | "invoicePrefix" | "nextInvoiceNumber" | "quotationPrefix" | "nextQuotationNumber" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["agency"]>
 export type AgencyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.Agency$membersArgs<ExtArgs>
   customers?: boolean | Prisma.Agency$customersArgs<ExtArgs>
   itineraries?: boolean | Prisma.Agency$itinerariesArgs<ExtArgs>
   invoices?: boolean | Prisma.Agency$invoicesArgs<ExtArgs>
+  quotations?: boolean | Prisma.Agency$quotationsArgs<ExtArgs>
+  billingSettings?: boolean | Prisma.Agency$billingSettingsArgs<ExtArgs>
   documentSettings?: boolean | Prisma.Agency$documentSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.AgencyCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1826,6 +2339,8 @@ export type $AgencyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     customers: Prisma.$CustomerPayload<ExtArgs>[]
     itineraries: Prisma.$ItineraryPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    quotations: Prisma.$QuotationPayload<ExtArgs>[]
+    billingSettings: Prisma.$AgencyBillingSettingsPayload<ExtArgs> | null
     documentSettings: Prisma.$AgencyDocumentSettingsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1851,6 +2366,8 @@ export type $AgencyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     timezone: string
     invoicePrefix: string
     nextInvoiceNumber: number
+    quotationPrefix: string
+    nextQuotationNumber: number
     status: $Enums.AgencyStatus
     createdAt: Date
     updatedAt: Date
@@ -2252,6 +2769,8 @@ export interface Prisma__AgencyClient<T, Null = never, ExtArgs extends runtime.T
   customers<T extends Prisma.Agency$customersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$customersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   itineraries<T extends Prisma.Agency$itinerariesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$itinerariesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Agency$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotations<T extends Prisma.Agency$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  billingSettings<T extends Prisma.Agency$billingSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$billingSettingsArgs<ExtArgs>>): Prisma.Prisma__AgencyBillingSettingsClient<runtime.Types.Result.GetResult<Prisma.$AgencyBillingSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   documentSettings<T extends Prisma.Agency$documentSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agency$documentSettingsArgs<ExtArgs>>): Prisma.Prisma__AgencyDocumentSettingsClient<runtime.Types.Result.GetResult<Prisma.$AgencyDocumentSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2304,6 +2823,8 @@ export interface AgencyFieldRefs {
   readonly timezone: Prisma.FieldRef<"Agency", 'String'>
   readonly invoicePrefix: Prisma.FieldRef<"Agency", 'String'>
   readonly nextInvoiceNumber: Prisma.FieldRef<"Agency", 'Int'>
+  readonly quotationPrefix: Prisma.FieldRef<"Agency", 'String'>
+  readonly nextQuotationNumber: Prisma.FieldRef<"Agency", 'Int'>
   readonly status: Prisma.FieldRef<"Agency", 'AgencyStatus'>
   readonly createdAt: Prisma.FieldRef<"Agency", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Agency", 'DateTime'>
@@ -2793,6 +3314,49 @@ export type Agency$invoicesArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Agency.quotations
+ */
+export type Agency$quotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
+  orderBy?: Prisma.QuotationOrderByWithRelationInput | Prisma.QuotationOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationScalarFieldEnum | Prisma.QuotationScalarFieldEnum[]
+}
+
+/**
+ * Agency.billingSettings
+ */
+export type Agency$billingSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgencyBillingSettings
+   */
+  select?: Prisma.AgencyBillingSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AgencyBillingSettings
+   */
+  omit?: Prisma.AgencyBillingSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgencyBillingSettingsInclude<ExtArgs> | null
+  where?: Prisma.AgencyBillingSettingsWhereInput
 }
 
 /**

@@ -408,6 +408,9 @@ export const ModelName = {
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
   InvoicePayment: 'InvoicePayment',
+  Quotation: 'Quotation',
+  QuotationItem: 'QuotationItem',
+  AgencyBillingSettings: 'AgencyBillingSettings',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
@@ -427,7 +430,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "agency" | "agencyMember" | "customer" | "itinerary" | "itineraryDay" | "itineraryItem" | "itineraryPriceItem" | "invoice" | "invoiceItem" | "invoicePayment" | "session" | "account" | "verification" | "agencyDocumentSettings"
+    modelProps: "user" | "agency" | "agencyMember" | "customer" | "itinerary" | "itineraryDay" | "itineraryItem" | "itineraryPriceItem" | "invoice" | "invoiceItem" | "invoicePayment" | "quotation" | "quotationItem" | "agencyBillingSettings" | "session" | "account" | "verification" | "agencyDocumentSettings"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1245,6 +1248,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Quotation: {
+      payload: Prisma.$QuotationPayload<ExtArgs>
+      fields: Prisma.QuotationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QuotationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QuotationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        findFirst: {
+          args: Prisma.QuotationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QuotationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        findMany: {
+          args: Prisma.QuotationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        create: {
+          args: Prisma.QuotationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        createMany: {
+          args: Prisma.QuotationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QuotationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        delete: {
+          args: Prisma.QuotationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        update: {
+          args: Prisma.QuotationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        deleteMany: {
+          args: Prisma.QuotationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QuotationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QuotationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        upsert: {
+          args: Prisma.QuotationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        aggregate: {
+          args: Prisma.QuotationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuotation>
+        }
+        groupBy: {
+          args: Prisma.QuotationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QuotationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationCountAggregateOutputType> | number
+        }
+      }
+    }
+    QuotationItem: {
+      payload: Prisma.$QuotationItemPayload<ExtArgs>
+      fields: Prisma.QuotationItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QuotationItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QuotationItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        findFirst: {
+          args: Prisma.QuotationItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QuotationItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        findMany: {
+          args: Prisma.QuotationItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+        }
+        create: {
+          args: Prisma.QuotationItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        createMany: {
+          args: Prisma.QuotationItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QuotationItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+        }
+        delete: {
+          args: Prisma.QuotationItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        update: {
+          args: Prisma.QuotationItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.QuotationItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QuotationItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QuotationItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.QuotationItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        aggregate: {
+          args: Prisma.QuotationItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuotationItem>
+        }
+        groupBy: {
+          args: Prisma.QuotationItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QuotationItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    AgencyBillingSettings: {
+      payload: Prisma.$AgencyBillingSettingsPayload<ExtArgs>
+      fields: Prisma.AgencyBillingSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AgencyBillingSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AgencyBillingSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.AgencyBillingSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AgencyBillingSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.AgencyBillingSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.AgencyBillingSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.AgencyBillingSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AgencyBillingSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.AgencyBillingSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>
+        }
+        update: {
+          args: Prisma.AgencyBillingSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.AgencyBillingSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AgencyBillingSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AgencyBillingSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.AgencyBillingSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgencyBillingSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.AgencyBillingSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAgencyBillingSettings>
+        }
+        groupBy: {
+          args: Prisma.AgencyBillingSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgencyBillingSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AgencyBillingSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgencyBillingSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
     Session: {
       payload: Prisma.$SessionPayload<ExtArgs>
       fields: Prisma.SessionFieldRefs
@@ -1618,6 +1843,8 @@ export const AgencyScalarFieldEnum = {
   timezone: 'timezone',
   invoicePrefix: 'invoicePrefix',
   nextInvoiceNumber: 'nextInvoiceNumber',
+  quotationPrefix: 'quotationPrefix',
+  nextQuotationNumber: 'nextQuotationNumber',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1736,6 +1963,7 @@ export const InvoiceScalarFieldEnum = {
   agencyId: 'agencyId',
   customerId: 'customerId',
   sourceItineraryId: 'sourceItineraryId',
+  sourceQuotationId: 'sourceQuotationId',
   invoiceNumber: 'invoiceNumber',
   status: 'status',
   issueDate: 'issueDate',
@@ -1758,6 +1986,12 @@ export const InvoiceScalarFieldEnum = {
   balanceDue: 'balanceDue',
   notes: 'notes',
   paymentTerms: 'paymentTerms',
+  bankName: 'bankName',
+  bankBranch: 'bankBranch',
+  accountName: 'accountName',
+  accountNumber: 'accountNumber',
+  swiftCode: 'swiftCode',
+  paymentInstructions: 'paymentInstructions',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1795,6 +2029,79 @@ export const InvoicePaymentScalarFieldEnum = {
 } as const
 
 export type InvoicePaymentScalarFieldEnum = (typeof InvoicePaymentScalarFieldEnum)[keyof typeof InvoicePaymentScalarFieldEnum]
+
+
+export const QuotationScalarFieldEnum = {
+  id: 'id',
+  agencyId: 'agencyId',
+  customerId: 'customerId',
+  sourceItineraryId: 'sourceItineraryId',
+  quotationNumber: 'quotationNumber',
+  status: 'status',
+  issueDate: 'issueDate',
+  validUntil: 'validUntil',
+  agencyName: 'agencyName',
+  agencyEmail: 'agencyEmail',
+  agencyPhone: 'agencyPhone',
+  agencyAddress: 'agencyAddress',
+  agencyLogoUrl: 'agencyLogoUrl',
+  customerName: 'customerName',
+  customerEmail: 'customerEmail',
+  customerPhone: 'customerPhone',
+  customerAddress: 'customerAddress',
+  currencyCode: 'currencyCode',
+  subtotal: 'subtotal',
+  discount: 'discount',
+  tax: 'tax',
+  totalAmount: 'totalAmount',
+  notes: 'notes',
+  termsAndConditions: 'termsAndConditions',
+  rejectionReason: 'rejectionReason',
+  confirmedAt: 'confirmedAt',
+  rejectedAt: 'rejectedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
+
+
+export const QuotationItemScalarFieldEnum = {
+  id: 'id',
+  quotationId: 'quotationId',
+  category: 'category',
+  name: 'name',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  lineTotal: 'lineTotal',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
+export const AgencyBillingSettingsScalarFieldEnum = {
+  id: 'id',
+  agencyId: 'agencyId',
+  bankName: 'bankName',
+  bankBranch: 'bankBranch',
+  accountName: 'accountName',
+  accountNumber: 'accountNumber',
+  swiftCode: 'swiftCode',
+  paymentInstructions: 'paymentInstructions',
+  defaultPaymentTerms: 'defaultPaymentTerms',
+  defaultTaxRate: 'defaultTaxRate',
+  taxRegistrationNumber: 'taxRegistrationNumber',
+  quotationValidityDays: 'quotationValidityDays',
+  quotationTerms: 'quotationTerms',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgencyBillingSettingsScalarFieldEnum = (typeof AgencyBillingSettingsScalarFieldEnum)[keyof typeof AgencyBillingSettingsScalarFieldEnum]
 
 
 export const SessionScalarFieldEnum = {
@@ -2072,6 +2379,20 @@ export type ListEnumInvoiceStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'QuotationStatus'
+ */
+export type EnumQuotationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuotationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'QuotationStatus[]'
+ */
+export type ListEnumQuotationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuotationStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2246,6 +2567,9 @@ export type GlobalOmitConfig = {
   invoice?: Prisma.InvoiceOmit
   invoiceItem?: Prisma.InvoiceItemOmit
   invoicePayment?: Prisma.InvoicePaymentOmit
+  quotation?: Prisma.QuotationOmit
+  quotationItem?: Prisma.QuotationItemOmit
+  agencyBillingSettings?: Prisma.AgencyBillingSettingsOmit
   session?: Prisma.SessionOmit
   account?: Prisma.AccountOmit
   verification?: Prisma.VerificationOmit

@@ -2,6 +2,23 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import {
+  Palette,
+  Type,
+  Search,
+  Check,
+  Save,
+  Loader2,
+  Sparkles,
+  FileText,
+  Receipt,
+  CheckCircle2,
+  AlertCircle,
+  Eye,
+  Paintbrush,
+} from "lucide-react";
+
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type BrandingSettings = {
   primaryColor: string;
@@ -102,6 +119,55 @@ const colorFields = [
   },
 ];
 
+const panelClass = `
+  overflow-hidden rounded-2xl
+  border border-slate-200/80 bg-white/90
+  shadow-sm shadow-slate-200/40
+  transition-colors duration-300
+  dark:border-white/[0.08]
+  dark:bg-slate-900/80 dark:shadow-black/10
+`;
+
+const inputClass = `
+  h-11 w-full rounded-xl
+  border border-slate-200 bg-white/80
+  px-4 text-sm text-slate-900 outline-none
+  transition-all placeholder:text-slate-400
+  hover:border-slate-300
+  focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10
+  dark:border-white/10 dark:bg-slate-950/50
+  dark:text-white dark:placeholder:text-slate-500
+  dark:hover:border-white/20
+  dark:focus:border-blue-400 dark:focus:ring-blue-400/10
+`;
+
+function SectionHeader({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: typeof Palette;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="flex items-center gap-3 border-b border-slate-100 px-5 py-5 dark:border-white/[0.07] sm:px-6">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-100 text-blue-600 dark:border-blue-400/20 dark:from-blue-500/15 dark:to-indigo-500/10 dark:text-blue-400">
+        <Icon className="h-5 w-5" />
+      </div>
+
+      <div>
+        <h2 className="text-base font-semibold text-slate-900 dark:text-white">
+          {title}
+        </h2>
+        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function DocumentSettingsPage() {
   const [settings, setSettings] =
     useState<BrandingSettings>(defaultSettings);
@@ -118,16 +184,11 @@ export default function DocumentSettingsPage() {
   useEffect(() => {
     async function loadSettings() {
       try {
-        const response = await fetch(
-          "/api/agency/document-settings"
-        );
-
+        const response = await fetch("/api/agency/document-settings");
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(
-            data.error || "Unable to load settings."
-          );
+          throw new Error(data.error || "Unable to load settings.");
         }
 
         setSettings({
@@ -138,9 +199,7 @@ export default function DocumentSettingsPage() {
         });
       } catch (err) {
         setError(
-          err instanceof Error
-            ? err.message
-            : "Unable to load settings."
+          err instanceof Error ? err.message : "Unable to load settings."
         );
       } finally {
         setLoading(false);
@@ -188,13 +247,13 @@ export default function DocumentSettingsPage() {
         .includes(fontSearch.toLowerCase());
 
       const matchesCategory =
-        fontCategory === "All" ||
-        font.category === fontCategory;
+        fontCategory === "All" || font.category === fontCategory;
 
       return matchesSearch && matchesCategory;
     });
   }, [fontSearch, fontCategory]);
 
+  // Update colours
   function updateColor(
     key: "primaryColor" | "secondaryColor" | "accentColor",
     value: string
@@ -208,9 +267,8 @@ export default function DocumentSettingsPage() {
     setError("");
   }
 
-  function applyPalette(
-    palette: (typeof palettes)[number]
-  ) {
+  // Apply preset palette
+  function applyPalette(palette: (typeof palettes)[number]) {
     setSettings((previous) => ({
       ...previous,
       primaryColor: palette.primaryColor,
@@ -222,6 +280,7 @@ export default function DocumentSettingsPage() {
     setError("");
   }
 
+  // Select font
   function selectFont(fontName: string) {
     setSettings((previous) => ({
       ...previous,
@@ -232,39 +291,31 @@ export default function DocumentSettingsPage() {
     setError("");
   }
 
+  // Save settings
   async function saveSettings() {
     setSaving(true);
     setMessage("");
     setError("");
 
     try {
-      const response = await fetch(
-        "/api/agency/document-settings",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(settings),
-        }
-      );
+      const response = await fetch("/api/agency/document-settings", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(settings),
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          data.error || "Unable to save settings."
-        );
+        throw new Error(data.error || "Unable to save settings.");
       }
 
-      setMessage(
-        "Your branding settings have been saved successfully!"
-      );
+      setMessage("Your branding settings have been saved successfully!");
     } catch (err) {
       setError(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong."
+        err instanceof Error ? err.message : "Something went wrong."
       );
     } finally {
       setSaving(false);
@@ -275,521 +326,696 @@ export default function DocumentSettingsPage() {
     (font) => font.name === settings.fontFamily
   );
 
+  const fontStyle = {
+    fontFamily: `"${settings.fontFamily}", sans-serif`,
+  };
+
+  // Loading screen
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-50">
-        <p className="text-sm text-slate-500">
-          Loading document settings...
-        </p>
-      </div>
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-slate-950">
+        <div className="flex flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white/80 px-10 py-8 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+            <Loader2 className="h-6 w-6 animate-spin" />
+          </div>
+          <div className="text-center">
+            <p className="text-sm font-semibold text-slate-900 dark:text-white">
+              Loading Document Branding
+            </p>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              Please wait while we retrieve your settings.
+            </p>
+          </div>
+        </div>
+      </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-10">
-      <div className="mx-auto max-w-7xl">
+    <main className="min-h-screen bg-slate-50 px-4 py-6 transition-colors duration-300 dark:bg-slate-950 sm:px-6 sm:py-8 lg:px-8">
+      <div className="mx-auto max-w-7xl space-y-7">
 
-        {/* Header */}
-        <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
+        {/* Page Header */}
+        <header className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
           <div>
-            <p className="mb-2 text-sm font-semibold text-blue-600">
-              AGENCY SETTINGS
-            </p>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50/80 px-3 py-1.5 text-xs font-semibold text-blue-700 dark:border-blue-400/20 dark:bg-blue-500/10 dark:text-blue-400">
+              <Sparkles className="h-3.5 w-3.5" />
+              Workspace Settings
+              <span className="text-blue-300 dark:text-blue-500">/</span>
+              Document Branding
+            </div>
 
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
               Document Branding
             </h1>
 
-            <p className="mt-2 text-sm text-slate-500">
-              Customize the appearance of your itineraries and invoices.
+            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500 dark:text-slate-400">
+              Customize the appearance of your agency itineraries and invoices.
             </p>
           </div>
 
-          <button
-            onClick={saveSettings}
-            disabled={saving}
-            className="rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {saving ? "Saving..." : "Save Changes"}
-          </button>
-        </div>
+          <div className="flex items-center gap-3">
+            <div className="hidden items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-xs text-slate-500 dark:border-white/10 dark:bg-slate-900/80 dark:text-slate-400 sm:flex">
+              <Paintbrush className="h-4 w-4" />
+              Branding Settings
+            </div>
 
-        {/* Messages */}
+            <ThemeToggle />
+
+            <button
+              type="button"
+              onClick={saveSettings}
+              disabled={saving}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {saving ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Save className="h-4 w-4" />
+              )}
+              {saving ? "Saving..." : "Save Changes"}
+            </button>
+          </div>
+        </header>
+
+        {/* Alerts */}
         {message && (
-          <div className="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-700">
+          <div className="flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3.5 text-sm text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
+            <CheckCircle2 className="h-5 w-5 shrink-0" />
             {message}
           </div>
         )}
 
         {error && (
-          <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+          <div className="flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3.5 text-sm text-red-700 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400">
+            <AlertCircle className="h-5 w-5 shrink-0" />
             {error}
           </div>
         )}
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        {/* Main Layout */}
+        <div className="grid items-start gap-7 xl:grid-cols-[1fr_0.95fr]">
 
           {/* LEFT COLUMN */}
-          <section className="space-y-6">
+          <div className="space-y-6">
 
-            {/* Brand colours */}
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-slate-900">
-                Brand Colours
-              </h2>
+            {/* Brand Colours */}
+            <section className={panelClass}>
+              <SectionHeader
+                icon={Palette}
+                title="Brand Colours"
+                description="Customize your agency's document colour scheme."
+              />
 
-              <p className="mt-1 text-sm text-slate-500">
-                Choose any colour using the picker or enter a HEX value.
-              </p>
+              <div className="space-y-6 p-5 sm:p-6">
+                <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                  Choose any colour using the colour picker or enter a HEX value.
+                  Your changes appear instantly in the previews.
+                </p>
 
-              <div className="mt-6 space-y-6">
-                {colorFields.map((field) => (
-                  <div key={field.key}>
-                    <label className="text-sm font-semibold text-slate-800">
-                      {field.label}
-                    </label>
+                {colorFields.map((field) => {
+                  const validColor = /^#[0-9A-Fa-f]{6}$/.test(
+                    settings[field.key]
+                  );
 
-                    <p className="mt-1 text-xs text-slate-500">
-                      {field.description}
-                    </p>
+                  return (
+                    <div key={field.key}>
+                      <label className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                        {field.label}
+                      </label>
 
-                    <div className="mt-3 flex items-center gap-3">
-                      <input
-                        type="color"
-                        value={
-                          /^#[0-9A-Fa-f]{6}$/.test(settings[field.key])
-                            ? settings[field.key]
-                            : "#000000"
-                        }
-                        onChange={(event) =>
-                          updateColor(
-                            field.key,
-                            event.target.value.toUpperCase()
-                          )
-                        }
-                        className="h-12 w-16 cursor-pointer rounded-lg border border-slate-200 bg-white p-1"
-                      />
+                      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                        {field.description}
+                      </p>
 
-                      <input
-                        type="text"
-                        value={settings[field.key]}
-                        maxLength={7}
-                        onChange={(event) =>
-                          updateColor(
-                            field.key,
-                            event.target.value.toUpperCase()
-                          )
-                        }
-                        placeholder="#2563EB"
-                        className="h-12 w-full rounded-lg border border-slate-300 px-4 font-mono text-sm uppercase outline-none focus:border-blue-500"
-                      />
+                      <div className="mt-3 flex items-center gap-3">
+                        <div className="flex h-12 w-14 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 p-1 dark:border-white/10 dark:bg-slate-950">
+                          <input
+                            type="color"
+                            value={validColor ? settings[field.key] : "#000000"}
+                            onChange={(event) =>
+                              updateColor(
+                                field.key,
+                                event.target.value.toUpperCase()
+                              )
+                            }
+                            aria-label={`Choose ${field.label}`}
+                            className="h-full w-full cursor-pointer rounded-lg border-0 bg-transparent"
+                          />
+                        </div>
 
-                      <div
-                        className="h-12 w-12 shrink-0 rounded-lg border border-slate-200"
-                        style={{
-                          backgroundColor:
-                            /^#[0-9A-Fa-f]{6}$/.test(settings[field.key])
+                        <input
+                          type="text"
+                          value={settings[field.key]}
+                          maxLength={7}
+                          onChange={(event) =>
+                            updateColor(
+                              field.key,
+                              event.target.value.toUpperCase()
+                            )
+                          }
+                          placeholder="#2563EB"
+                          aria-label={`${field.label} HEX value`}
+                          className={`${inputClass} font-mono uppercase`}
+                        />
+
+                        <div
+                          className="h-12 w-12 shrink-0 rounded-xl border border-slate-200 dark:border-white/10"
+                          style={{
+                            backgroundColor: validColor
                               ? settings[field.key]
                               : "transparent",
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Preset palettes */}
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-slate-900">
-                Preset Colour Palettes
-              </h2>
-
-              <p className="mt-1 text-sm text-slate-500">
-                Choose a professional colour combination.
-              </p>
-
-              <div className="mt-5 space-y-3">
-                {palettes.map((palette) => (
-                  <button
-                    key={palette.name}
-                    type="button"
-                    onClick={() => applyPalette(palette)}
-                    className="flex w-full items-center justify-between rounded-lg border border-slate-200 p-4 text-left transition hover:border-blue-400 hover:bg-slate-50"
-                  >
-                    <span className="text-sm font-semibold text-slate-800">
-                      {palette.name}
-                    </span>
-
-                    <span className="flex gap-2">
-                      {[
-                        palette.primaryColor,
-                        palette.secondaryColor,
-                        palette.accentColor,
-                      ].map((color) => (
-                        <span
-                          key={color}
-                          className="h-7 w-7 rounded-full border border-black/10"
-                          style={{ backgroundColor: color }}
+                          }}
                         />
-                      ))}
-                    </span>
-                  </button>
-                ))}
+                      </div>
+
+                      {!validColor && settings[field.key] !== "" && (
+                        <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
+                          Enter a valid six-digit HEX colour, e.g. #2563EB.
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-            </div>
+            </section>
+
+            {/* Preset Palettes */}
+            <section className={panelClass}>
+              <SectionHeader
+                icon={Sparkles}
+                title="Preset Colour Palettes"
+                description="Choose a ready-made professional colour combination."
+              />
+
+              <div className="space-y-3 p-5 sm:p-6">
+                {palettes.map((palette) => {
+                  const active =
+                    settings.primaryColor === palette.primaryColor &&
+                    settings.secondaryColor === palette.secondaryColor &&
+                    settings.accentColor === palette.accentColor;
+
+                  return (
+                    <button
+                      key={palette.name}
+                      type="button"
+                      onClick={() => applyPalette(palette)}
+                      className={`flex w-full items-center justify-between gap-3 rounded-xl border p-4 text-left transition-all ${
+                        active
+                          ? "border-blue-500 bg-blue-50/70 ring-2 ring-blue-500/10 dark:border-blue-400 dark:bg-blue-500/10"
+                          : "border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:hover:border-white/20 dark:hover:bg-white/[0.04]"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex -space-x-2">
+                          {[
+                            palette.primaryColor,
+                            palette.secondaryColor,
+                            palette.accentColor,
+                          ].map((color) => (
+                            <span
+                              key={color}
+                              className="h-7 w-7 rounded-full border-2 border-white dark:border-slate-900"
+                              style={{ backgroundColor: color }}
+                            />
+                          ))}
+                        </div>
+
+                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                          {palette.name}
+                        </span>
+                      </div>
+
+                      {active && (
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-white">
+                          <Check className="h-3.5 w-3.5" />
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
 
             {/* Google Fonts */}
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <h2 className="text-lg font-bold text-slate-900">
-                    Typography
-                  </h2>
+            <section className={panelClass}>
+              <SectionHeader
+                icon={Type}
+                title="Typography"
+                description="Choose a Google Font for your travel documents."
+              />
 
-                  <p className="mt-1 text-sm text-slate-500">
-                    Browse and select Google Fonts for your documents.
+              <div className="p-5 sm:p-6">
+
+                {/* Google Fonts Label */}
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    Browse, preview and select your preferred font.
+                  </p>
+
+                  <span className="shrink-0 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[10px] font-semibold text-blue-700 dark:border-blue-400/20 dark:bg-blue-500/10 dark:text-blue-400">
+                    Google Fonts
+                  </span>
+                </div>
+
+                {/* Search */}
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="search"
+                    value={fontSearch}
+                    onChange={(event) => setFontSearch(event.target.value)}
+                    placeholder="Search fonts..."
+                    className={`${inputClass} pl-11`}
+                  />
+                </div>
+
+                {/* Categories */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {fontCategories.map((category) => (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setFontCategory(category)}
+                      className={`rounded-full px-3 py-2 text-xs font-medium transition ${
+                        fontCategory === category
+                          ? "bg-blue-600 text-white shadow-sm shadow-blue-600/20"
+                          : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-white/[0.06] dark:text-slate-300 dark:hover:bg-white/10"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Selected Font */}
+                <div className="mt-5 overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 dark:border-blue-400/20 dark:from-blue-500/10 dark:to-indigo-500/10">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-blue-700 dark:text-blue-400">
+                      Selected Typography
+                    </p>
+
+                    <span className="rounded-full bg-blue-600 px-2.5 py-1 text-[10px] font-semibold text-white">
+                      Active
+                    </span>
+                  </div>
+
+                  <h3
+                    className="mt-3 text-3xl font-bold text-slate-900 dark:text-white"
+                    style={fontStyle}
+                  >
+                    {settings.fontFamily}
+                  </h3>
+
+                  <p
+                    className="mt-2 text-sm text-slate-600 dark:text-slate-300"
+                    style={fontStyle}
+                  >
+                    Travel Beyond the Ordinary
+                  </p>
+
+                  <p className="mt-3 text-xs text-blue-700/70 dark:text-blue-400/70">
+                    {selectedFont?.category ?? "System font"} · Document typography
                   </p>
                 </div>
 
-                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                  Google Fonts
-                </span>
-              </div>
-
-              {/* Search */}
-              <div className="mt-5">
-                <input
-                  type="search"
-                  value={fontSearch}
-                  onChange={(event) =>
-                    setFontSearch(event.target.value)
-                  }
-                  placeholder="Search fonts..."
-                  className="h-12 w-full rounded-lg border border-slate-300 px-4 text-sm outline-none focus:border-blue-500"
-                />
-              </div>
-
-              {/* Categories */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                {fontCategories.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => setFontCategory(category)}
-                    className={`rounded-full px-3 py-2 text-xs font-medium transition ${
-                      fontCategory === category
-                        ? "bg-blue-600 text-white"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-
-              {/* Selected font */}
-              <div className="mt-5 rounded-lg border border-blue-200 bg-blue-50 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-blue-700">
-                  Selected font
-                </p>
-
-                <h3
-                  className="mt-2 text-2xl font-semibold text-slate-900"
-                  style={{
-                    fontFamily: `"${settings.fontFamily}", sans-serif`,
-                  }}
-                >
-                  {settings.fontFamily}
-                </h3>
-
-                <p
-                  className="mt-2 text-sm text-slate-600"
-                  style={{
-                    fontFamily: `"${settings.fontFamily}", sans-serif`,
-                  }}
-                >
-                  Travel Beyond the Ordinary
-                </p>
-              </div>
-
-              {/* Font list */}
-              <div className="mt-5 max-h-[430px] space-y-2 overflow-y-auto pr-1">
-                {filteredFonts.length === 0 && (
-                  <p className="rounded-lg bg-slate-50 p-5 text-center text-sm text-slate-500">
-                    No fonts found. Try another search.
-                  </p>
-                )}
-
-                {filteredFonts.map((font) => (
-                  <button
-                    key={font.name}
-                    type="button"
-                    onClick={() => selectFont(font.name)}
-                    className={`w-full rounded-lg border p-4 text-left transition ${
-                      settings.fontFamily === font.name
-                        ? "border-blue-500 bg-blue-50"
-                        : "border-slate-200 hover:border-slate-400 hover:bg-slate-50"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p
-                          className="text-lg font-semibold text-slate-900"
-                          style={{
-                            fontFamily: `"${font.name}", sans-serif`,
-                          }}
-                        >
-                          {font.name}
-                        </p>
-
-                        <p className="mt-1 text-xs text-slate-500">
-                          {font.category} · Weights: {font.weights.join(", ")}
-                        </p>
-                      </div>
-
-                      {settings.fontFamily === font.name && (
-                        <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
-                          Selected
-                        </span>
-                      )}
+                {/* Font List */}
+                <div className="mt-5 max-h-[430px] space-y-2 overflow-y-auto pr-1">
+                  {filteredFonts.length === 0 && (
+                    <div className="rounded-xl border border-dashed border-slate-300 p-8 text-center dark:border-white/10">
+                      <Search className="mx-auto h-6 w-6 text-slate-400" />
+                      <p className="mt-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                        No fonts found
+                      </p>
+                      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                        Try another search or category.
+                      </p>
                     </div>
+                  )}
 
-                    <p
-                      className="mt-3 text-sm text-slate-600"
-                      style={{
-                        fontFamily: `"${font.name}", sans-serif`,
-                      }}
-                    >
-                      Discover beautiful destinations around the world.
-                    </p>
-                  </button>
-                ))}
+                  {filteredFonts.map((font) => {
+                    const active = settings.fontFamily === font.name;
+
+                    return (
+                      <button
+                        key={font.name}
+                        type="button"
+                        onClick={() => selectFont(font.name)}
+                        className={`w-full rounded-xl border p-4 text-left transition-all ${
+                          active
+                            ? "border-blue-500 bg-blue-50/70 ring-2 ring-blue-500/10 dark:border-blue-400 dark:bg-blue-500/10"
+                            : "border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:hover:border-white/20 dark:hover:bg-white/[0.04]"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p
+                              className="text-lg font-semibold text-slate-900 dark:text-white"
+                              style={{ fontFamily: `"${font.name}", sans-serif` }}
+                            >
+                              {font.name}
+                            </p>
+
+                            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                              {font.category} · Weights: {font.weights.join(", ")}
+                            </p>
+                          </div>
+
+                          {active && (
+                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white">
+                              <Check className="h-4 w-4" />
+                            </span>
+                          )}
+                        </div>
+
+                        <p
+                          className="mt-3 text-sm text-slate-600 dark:text-slate-300"
+                          style={{ fontFamily: `"${font.name}", sans-serif` }}
+                        >
+                          Discover beautiful destinations around the world.
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <p className="mt-4 text-xs leading-5 text-slate-400 dark:text-slate-500">
+                  Fonts load from Google Fonts. An internet connection is required.
+                </p>
               </div>
-
-              <p className="mt-4 text-xs text-slate-400">
-                Fonts load from Google Fonts. An internet connection is required.
-              </p>
-            </div>
-          </section>
+            </section>
+          </div>
 
           {/* RIGHT COLUMN - LIVE PREVIEWS */}
-          <section className="space-y-6">
-            <div>
-              <h2 className="text-xl font-bold text-slate-900">
-                Live Document Preview
-              </h2>
+          <section className="space-y-6 xl:sticky xl:top-6">
 
-              <p className="mt-1 text-sm text-slate-500">
-                Preview your branding before saving.
-              </p>
+            {/* Preview Heading */}
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600 dark:border-blue-400/20 dark:bg-blue-500/10 dark:text-blue-400">
+                <Eye className="h-5 w-5" />
+              </div>
+
+              <div>
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+                  Live Document Preview
+                </h2>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  Preview your branding before saving.
+                </p>
+              </div>
             </div>
 
-            {/* Itinerary preview */}
-            <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-              <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
-                <h3 className="text-sm font-bold text-slate-800">
-                  Itinerary Preview
-                </h3>
+            {/* Itinerary Preview */}
+            <div className={panelClass}>
+              <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4 dark:border-white/[0.07]">
+                <div className="flex items-center gap-2">
+                  <FileText className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                    Itinerary Preview
+                  </h3>
+                </div>
 
-                <span className="text-xs text-slate-400">
+                <span className="text-[10px] font-semibold tracking-wider text-slate-400">
                   DOCUMENT 01
                 </span>
               </div>
 
-              <div
-                className="p-6"
-                style={{
-                  fontFamily: `"${settings.fontFamily}", sans-serif`,
-                }}
-              >
+              {/* Document Canvas */}
+              <div className="bg-slate-100/70 p-3 dark:bg-slate-950/50 sm:p-5">
                 <div
-                  className="rounded-lg p-6 text-white"
-                  style={{
-                    backgroundColor: settings.primaryColor,
-                  }}
+                  className="mx-auto max-w-[520px] bg-white p-5 shadow-md sm:p-7"
+                  style={fontStyle}
                 >
-                  <p className="text-xs font-semibold tracking-widest">
-                    YOUR TRAVEL AGENCY
-                  </p>
-
-                  <h3 className="mt-4 text-2xl font-bold">
-                    Sri Lanka Tour
-                  </h3>
-
-                  <p className="mt-2 text-sm opacity-90">
-                    8 Days / 7 Nights
-                  </p>
-                </div>
-
-                <div className="mt-6">
-                  <h4
-                    className="text-lg font-bold"
-                    style={{
-                      color: settings.secondaryColor,
-                    }}
-                  >
-                    Your Journey
-                  </h4>
-
                   <div
-                    className="mt-3 rounded-lg border-l-4 bg-slate-50 p-4"
-                    style={{
-                      borderColor: settings.accentColor,
-                    }}
+                    className="rounded-xl p-6 text-white"
+                    style={{ backgroundColor: settings.primaryColor }}
                   >
-                    <p className="text-sm font-bold text-slate-800">
-                      Day 01 – Arrival in Sri Lanka
+                    <p className="text-[10px] font-semibold tracking-[0.2em] opacity-80">
+                      YOUR TRAVEL AGENCY
                     </p>
 
-                    <p className="mt-2 text-xs leading-5 text-slate-500">
-                      Airport pickup, hotel transfer and welcome experience.
+                    <h3 className="mt-5 text-2xl font-bold">
+                      Sri Lanka Tour
+                    </h3>
+
+                    <p className="mt-2 text-sm opacity-90">
+                      8 Days / 7 Nights
                     </p>
                   </div>
-                </div>
 
-                <div
-                  className="mt-6 border-t pt-4 text-center text-xs text-slate-500"
-                  style={{
-                    borderColor: settings.accentColor,
-                  }}
-                >
-                  Travel Beyond the Ordinary
+                  <div className="mt-7">
+                    <h4
+                      className="text-lg font-bold"
+                      style={{ color: settings.secondaryColor }}
+                    >
+                      Your Journey
+                    </h4>
+
+                    <div
+                      className="mt-4 rounded-r-lg border-l-4 bg-slate-50 p-4"
+                      style={{ borderColor: settings.accentColor }}
+                    >
+                      <p className="text-sm font-bold text-slate-800">
+                        Day 01 – Arrival in Sri Lanka
+                      </p>
+
+                      <p className="mt-2 text-xs leading-5 text-slate-500">
+                        Airport pickup, hotel transfer and welcome experience.
+                      </p>
+                    </div>
+
+                    <div
+                      className="mt-3 rounded-r-lg border-l-4 bg-slate-50 p-4"
+                      style={{ borderColor: settings.accentColor }}
+                    >
+                      <p className="text-sm font-bold text-slate-800">
+                        Day 02 – Explore Cultural Heritage
+                      </p>
+
+                      <p className="mt-2 text-xs leading-5 text-slate-500">
+                        Discover local attractions and experience Sri Lankan culture.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    className="mt-7 border-t pt-5 text-center text-xs text-slate-500"
+                    style={{ borderColor: settings.accentColor }}
+                  >
+                    Travel Beyond the Ordinary
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Invoice preview */}
-            <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-              <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
-                <h3 className="text-sm font-bold text-slate-800">
-                  Invoice Preview
-                </h3>
+            {/* Invoice Preview */}
+            <div className={panelClass}>
+              <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4 dark:border-white/[0.07]">
+                <div className="flex items-center gap-2">
+                  <Receipt className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                    Invoice Preview
+                  </h3>
+                </div>
 
-                <span className="text-xs text-slate-400">
+                <span className="text-[10px] font-semibold tracking-wider text-slate-400">
                   DOCUMENT 02
                 </span>
               </div>
 
-              <div
-                className="p-6"
-                style={{
-                  fontFamily: `"${settings.fontFamily}", sans-serif`,
-                }}
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3
-                      className="text-xl font-bold"
-                      style={{
-                        color: settings.primaryColor,
-                      }}
-                    >
-                      YOUR AGENCY
-                    </h3>
-
-                    <p className="mt-1 text-xs text-slate-500">
-                      Travel Agency
-                    </p>
-                  </div>
-
-                  <div className="text-right">
-                    <h3
-                      className="text-xl font-bold"
-                      style={{
-                        color: settings.secondaryColor,
-                      }}
-                    >
-                      INVOICE
-                    </h3>
-
-                    <p className="mt-1 text-xs text-slate-500">
-                      INV-0001
-                    </p>
-                  </div>
-                </div>
-
+              {/* Document Canvas */}
+              <div className="bg-slate-100/70 p-3 dark:bg-slate-950/50 sm:p-5">
                 <div
-                  className="mt-6 rounded-lg p-4"
-                  style={{
-                    backgroundColor: settings.secondaryColor,
-                  }}
+                  className="mx-auto max-w-[520px] bg-white p-5 shadow-md sm:p-7"
+                  style={fontStyle}
                 >
-                  <p className="text-xs font-semibold text-white">
-                    BILL TO
-                  </p>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3
+                        className="text-xl font-bold"
+                        style={{ color: settings.primaryColor }}
+                      >
+                        YOUR AGENCY
+                      </h3>
 
-                  <p className="mt-2 text-sm font-bold text-white">
-                    Sample Customer
-                  </p>
+                      <p className="mt-1 text-xs text-slate-500">
+                        Travel Agency
+                      </p>
+                    </div>
 
-                  <p className="mt-1 text-xs text-white/70">
-                    Sri Lanka Tour Package
-                  </p>
-                </div>
+                    <div className="text-right">
+                      <h3
+                        className="text-xl font-bold"
+                        style={{ color: settings.secondaryColor }}
+                      >
+                        INVOICE
+                      </h3>
 
-                <div className="mt-6 space-y-3">
-                  <div className="flex justify-between text-sm text-slate-600">
-                    <span>Tour Package</span>
-                    <span>LKR 150,000.00</span>
-                  </div>
-
-                  <div className="flex justify-between text-sm text-slate-600">
-                    <span>Transportation</span>
-                    <span>LKR 25,000.00</span>
+                      <p className="mt-1 text-xs text-slate-500">
+                        INV-0001
+                      </p>
+                    </div>
                   </div>
 
                   <div
-                    className="flex justify-between border-t pt-4 text-base font-bold"
-                    style={{
-                      borderColor: settings.accentColor,
-                      color: settings.primaryColor,
-                    }}
+                    className="mt-7 rounded-xl p-4"
+                    style={{ backgroundColor: settings.secondaryColor }}
                   >
-                    <span>Total</span>
-                    <span>LKR 175,000.00</span>
-                  </div>
-                </div>
+                    <p className="text-[10px] font-semibold tracking-wider text-white/70">
+                      BILL TO
+                    </p>
 
-                <div
-                  className="mt-6 rounded-lg p-4 text-center text-sm font-semibold text-white"
-                  style={{
-                    backgroundColor: settings.primaryColor,
-                  }}
-                >
-                  Thank You For Choosing Us!
+                    <p className="mt-2 text-sm font-bold text-white">
+                      Sample Customer
+                    </p>
+
+                    <p className="mt-1 text-xs text-white/70">
+                      Sri Lanka Tour Package
+                    </p>
+                  </div>
+
+                  <div className="mt-7 space-y-4">
+                    <div className="flex justify-between gap-3 text-xs text-slate-600">
+                      <span>Tour Package</span>
+                      <span>LKR 150,000.00</span>
+                    </div>
+
+                    <div className="flex justify-between gap-3 text-xs text-slate-600">
+                      <span>Transportation</span>
+                      <span>LKR 25,000.00</span>
+                    </div>
+
+                    <div
+                      className="flex justify-between border-t pt-4 text-sm font-bold"
+                      style={{
+                        borderColor: settings.accentColor,
+                        color: settings.primaryColor,
+                      }}
+                    >
+                      <span>Total</span>
+                      <span>LKR 175,000.00</span>
+                    </div>
+                  </div>
+
+                  <div
+                    className="mt-7 rounded-xl p-4 text-center text-sm font-semibold text-white"
+                    style={{ backgroundColor: settings.primaryColor }}
+                  >
+                    Thank You For Choosing Us!
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Font details */}
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-sm font-bold text-slate-900">
-                Current Typography
-              </h3>
+            {/* Typography Details */}
+            <div className={panelClass}>
+              <div className="p-5 sm:p-6">
+                <div className="flex items-center gap-2">
+                  <Type className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                    Current Typography
+                  </h3>
+                </div>
 
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-sm text-slate-500">
-                  Selected font
-                </span>
+                <div className="mt-4 flex items-center justify-between gap-3 border-b border-slate-100 py-3 dark:border-white/[0.07]">
+                  <span className="text-sm text-slate-500 dark:text-slate-400">
+                    Selected Font
+                  </span>
 
-                <span className="text-sm font-semibold text-slate-800">
-                  {settings.fontFamily}
-                </span>
+                  <span
+                    className="text-sm font-semibold text-slate-800 dark:text-slate-200"
+                    style={fontStyle}
+                  >
+                    {settings.fontFamily}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between gap-3 pt-3">
+                  <span className="text-sm text-slate-500 dark:text-slate-400">
+                    Font Category
+                  </span>
+
+                  <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                    {selectedFont?.category ?? "System font"}
+                  </span>
+                </div>
               </div>
+            </div>
 
-              <div className="mt-2 flex items-center justify-between">
-                <span className="text-sm text-slate-500">
-                  Font category
-                </span>
+            {/* Colour Summary */}
+            <div className={panelClass}>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                  Active Brand Colours
+                </h3>
 
-                <span className="text-sm font-semibold text-slate-800">
-                  {selectedFont?.category ?? "System font"}
-                </span>
+                <div className="mt-4 grid grid-cols-3 gap-3">
+                  {colorFields.map((field) => (
+                    <div key={field.key}>
+                      <div
+                        className="h-12 rounded-xl border border-black/5 dark:border-white/10"
+                        style={{
+                          backgroundColor: /^#[0-9A-Fa-f]{6}$/.test(
+                            settings[field.key]
+                          )
+                            ? settings[field.key]
+                            : "transparent",
+                        }}
+                      />
+
+                      <p className="mt-2 truncate text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                        {field.label}
+                      </p>
+
+                      <p className="mt-1 font-mono text-[10px] text-slate-700 dark:text-slate-300">
+                        {settings[field.key]}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
         </div>
+
+        {/* Bottom Save Bar */}
+        <div className="sticky bottom-4 z-30 flex flex-col justify-between gap-4 rounded-2xl border border-slate-200/80 bg-white/90 p-4 shadow-xl shadow-slate-300/20 backdrop-blur-xl dark:border-white/[0.08] dark:bg-slate-900/90 dark:shadow-black/20 sm:flex-row sm:items-center sm:p-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+              <Save className="h-4 w-4" />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                Save your document branding
+              </p>
+
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Apply your selected colours and typography to your agency settings.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={saveSettings}
+            disabled={saving}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {saving ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Save className="h-4 w-4" />
+            )}
+
+            {saving ? "Saving..." : "Save Changes"}
+          </button>
+        </div>
+
+        {/* Footer */}
+        <footer className="pb-5 text-center text-xs text-slate-400 dark:text-slate-500">
+          Travel Agency Management System · Document Branding
+        </footer>
       </div>
     </main>
   );

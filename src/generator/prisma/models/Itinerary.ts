@@ -331,6 +331,7 @@ export type ItineraryWhereInput = {
   agency?: Prisma.XOR<Prisma.AgencyScalarRelationFilter, Prisma.AgencyWhereInput>
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   invoices?: Prisma.InvoiceListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
   days?: Prisma.ItineraryDayListRelationFilter
   priceItems?: Prisma.ItineraryPriceItemListRelationFilter
 }
@@ -357,6 +358,7 @@ export type ItineraryOrderByWithRelationInput = {
   agency?: Prisma.AgencyOrderByWithRelationInput
   customer?: Prisma.CustomerOrderByWithRelationInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  quotations?: Prisma.QuotationOrderByRelationAggregateInput
   days?: Prisma.ItineraryDayOrderByRelationAggregateInput
   priceItems?: Prisma.ItineraryPriceItemOrderByRelationAggregateInput
 }
@@ -387,6 +389,7 @@ export type ItineraryWhereUniqueInput = Prisma.AtLeast<{
   agency?: Prisma.XOR<Prisma.AgencyScalarRelationFilter, Prisma.AgencyWhereInput>
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   invoices?: Prisma.InvoiceListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
   days?: Prisma.ItineraryDayListRelationFilter
   priceItems?: Prisma.ItineraryPriceItemListRelationFilter
 }, "id" | "agencyId_referenceCode">
@@ -461,6 +464,7 @@ export type ItineraryCreateInput = {
   agency: Prisma.AgencyCreateNestedOneWithoutItinerariesInput
   customer: Prisma.CustomerCreateNestedOneWithoutItinerariesInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemCreateNestedManyWithoutItineraryInput
 }
@@ -485,6 +489,7 @@ export type ItineraryUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayUncheckedCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedCreateNestedManyWithoutItineraryInput
 }
@@ -509,6 +514,7 @@ export type ItineraryUpdateInput = {
   agency?: Prisma.AgencyUpdateOneRequiredWithoutItinerariesNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutItinerariesNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUpdateManyWithoutItineraryNestedInput
 }
@@ -533,6 +539,7 @@ export type ItineraryUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUncheckedUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedUpdateManyWithoutItineraryNestedInput
 }
@@ -830,6 +837,22 @@ export type ItineraryUpdateOneWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ItineraryUpdateToOneWithWhereWithoutInvoicesInput, Prisma.ItineraryUpdateWithoutInvoicesInput>, Prisma.ItineraryUncheckedUpdateWithoutInvoicesInput>
 }
 
+export type ItineraryCreateNestedOneWithoutQuotationsInput = {
+  create?: Prisma.XOR<Prisma.ItineraryCreateWithoutQuotationsInput, Prisma.ItineraryUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.ItineraryCreateOrConnectWithoutQuotationsInput
+  connect?: Prisma.ItineraryWhereUniqueInput
+}
+
+export type ItineraryUpdateOneWithoutQuotationsNestedInput = {
+  create?: Prisma.XOR<Prisma.ItineraryCreateWithoutQuotationsInput, Prisma.ItineraryUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.ItineraryCreateOrConnectWithoutQuotationsInput
+  upsert?: Prisma.ItineraryUpsertWithoutQuotationsInput
+  disconnect?: Prisma.ItineraryWhereInput | boolean
+  delete?: Prisma.ItineraryWhereInput | boolean
+  connect?: Prisma.ItineraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ItineraryUpdateToOneWithWhereWithoutQuotationsInput, Prisma.ItineraryUpdateWithoutQuotationsInput>, Prisma.ItineraryUncheckedUpdateWithoutQuotationsInput>
+}
+
 export type ItineraryCreateWithoutAgencyInput = {
   id?: string
   referenceCode?: string | null
@@ -849,6 +872,7 @@ export type ItineraryCreateWithoutAgencyInput = {
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutItinerariesInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemCreateNestedManyWithoutItineraryInput
 }
@@ -872,6 +896,7 @@ export type ItineraryUncheckedCreateWithoutAgencyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayUncheckedCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedCreateNestedManyWithoutItineraryInput
 }
@@ -945,6 +970,7 @@ export type ItineraryCreateWithoutCustomerInput = {
   updatedAt?: Date | string
   agency: Prisma.AgencyCreateNestedOneWithoutItinerariesInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemCreateNestedManyWithoutItineraryInput
 }
@@ -968,6 +994,7 @@ export type ItineraryUncheckedCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayUncheckedCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedCreateNestedManyWithoutItineraryInput
 }
@@ -1018,6 +1045,7 @@ export type ItineraryCreateWithoutDaysInput = {
   agency: Prisma.AgencyCreateNestedOneWithoutItinerariesInput
   customer: Prisma.CustomerCreateNestedOneWithoutItinerariesInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutSourceItineraryInput
   priceItems?: Prisma.ItineraryPriceItemCreateNestedManyWithoutItineraryInput
 }
 
@@ -1041,6 +1069,7 @@ export type ItineraryUncheckedCreateWithoutDaysInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutSourceItineraryInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedCreateNestedManyWithoutItineraryInput
 }
 
@@ -1080,6 +1109,7 @@ export type ItineraryUpdateWithoutDaysInput = {
   agency?: Prisma.AgencyUpdateOneRequiredWithoutItinerariesNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutItinerariesNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutSourceItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUpdateManyWithoutItineraryNestedInput
 }
 
@@ -1103,6 +1133,7 @@ export type ItineraryUncheckedUpdateWithoutDaysInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutSourceItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedUpdateManyWithoutItineraryNestedInput
 }
 
@@ -1126,6 +1157,7 @@ export type ItineraryCreateWithoutPriceItemsInput = {
   agency: Prisma.AgencyCreateNestedOneWithoutItinerariesInput
   customer: Prisma.CustomerCreateNestedOneWithoutItinerariesInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayCreateNestedManyWithoutItineraryInput
 }
 
@@ -1149,6 +1181,7 @@ export type ItineraryUncheckedCreateWithoutPriceItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutSourceItineraryInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayUncheckedCreateNestedManyWithoutItineraryInput
 }
 
@@ -1188,6 +1221,7 @@ export type ItineraryUpdateWithoutPriceItemsInput = {
   agency?: Prisma.AgencyUpdateOneRequiredWithoutItinerariesNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutItinerariesNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUpdateManyWithoutItineraryNestedInput
 }
 
@@ -1211,6 +1245,7 @@ export type ItineraryUncheckedUpdateWithoutPriceItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUncheckedUpdateManyWithoutItineraryNestedInput
 }
 
@@ -1233,6 +1268,7 @@ export type ItineraryCreateWithoutInvoicesInput = {
   updatedAt?: Date | string
   agency: Prisma.AgencyCreateNestedOneWithoutItinerariesInput
   customer: Prisma.CustomerCreateNestedOneWithoutItinerariesInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemCreateNestedManyWithoutItineraryInput
 }
@@ -1256,6 +1292,7 @@ export type ItineraryUncheckedCreateWithoutInvoicesInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutSourceItineraryInput
   days?: Prisma.ItineraryDayUncheckedCreateNestedManyWithoutItineraryInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedCreateNestedManyWithoutItineraryInput
 }
@@ -1295,6 +1332,7 @@ export type ItineraryUpdateWithoutInvoicesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agency?: Prisma.AgencyUpdateOneRequiredWithoutItinerariesNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutItinerariesNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUpdateManyWithoutItineraryNestedInput
 }
@@ -1318,6 +1356,119 @@ export type ItineraryUncheckedUpdateWithoutInvoicesInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutSourceItineraryNestedInput
+  days?: Prisma.ItineraryDayUncheckedUpdateManyWithoutItineraryNestedInput
+  priceItems?: Prisma.ItineraryPriceItemUncheckedUpdateManyWithoutItineraryNestedInput
+}
+
+export type ItineraryCreateWithoutQuotationsInput = {
+  id?: string
+  referenceCode?: string | null
+  title: string
+  destination?: string | null
+  startDate: Date | string
+  endDate: Date | string
+  adults?: number
+  children?: number
+  infants?: number
+  status?: $Enums.ItineraryStatus
+  description?: string | null
+  inclusions?: string | null
+  exclusions?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  agency: Prisma.AgencyCreateNestedOneWithoutItinerariesInput
+  customer: Prisma.CustomerCreateNestedOneWithoutItinerariesInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutSourceItineraryInput
+  days?: Prisma.ItineraryDayCreateNestedManyWithoutItineraryInput
+  priceItems?: Prisma.ItineraryPriceItemCreateNestedManyWithoutItineraryInput
+}
+
+export type ItineraryUncheckedCreateWithoutQuotationsInput = {
+  id?: string
+  agencyId: string
+  customerId: string
+  referenceCode?: string | null
+  title: string
+  destination?: string | null
+  startDate: Date | string
+  endDate: Date | string
+  adults?: number
+  children?: number
+  infants?: number
+  status?: $Enums.ItineraryStatus
+  description?: string | null
+  inclusions?: string | null
+  exclusions?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutSourceItineraryInput
+  days?: Prisma.ItineraryDayUncheckedCreateNestedManyWithoutItineraryInput
+  priceItems?: Prisma.ItineraryPriceItemUncheckedCreateNestedManyWithoutItineraryInput
+}
+
+export type ItineraryCreateOrConnectWithoutQuotationsInput = {
+  where: Prisma.ItineraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItineraryCreateWithoutQuotationsInput, Prisma.ItineraryUncheckedCreateWithoutQuotationsInput>
+}
+
+export type ItineraryUpsertWithoutQuotationsInput = {
+  update: Prisma.XOR<Prisma.ItineraryUpdateWithoutQuotationsInput, Prisma.ItineraryUncheckedUpdateWithoutQuotationsInput>
+  create: Prisma.XOR<Prisma.ItineraryCreateWithoutQuotationsInput, Prisma.ItineraryUncheckedCreateWithoutQuotationsInput>
+  where?: Prisma.ItineraryWhereInput
+}
+
+export type ItineraryUpdateToOneWithWhereWithoutQuotationsInput = {
+  where?: Prisma.ItineraryWhereInput
+  data: Prisma.XOR<Prisma.ItineraryUpdateWithoutQuotationsInput, Prisma.ItineraryUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type ItineraryUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  adults?: Prisma.IntFieldUpdateOperationsInput | number
+  children?: Prisma.IntFieldUpdateOperationsInput | number
+  infants?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumItineraryStatusFieldUpdateOperationsInput | $Enums.ItineraryStatus
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inclusions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exclusions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agency?: Prisma.AgencyUpdateOneRequiredWithoutItinerariesNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutItinerariesNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutSourceItineraryNestedInput
+  days?: Prisma.ItineraryDayUpdateManyWithoutItineraryNestedInput
+  priceItems?: Prisma.ItineraryPriceItemUpdateManyWithoutItineraryNestedInput
+}
+
+export type ItineraryUncheckedUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  agencyId?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  adults?: Prisma.IntFieldUpdateOperationsInput | number
+  children?: Prisma.IntFieldUpdateOperationsInput | number
+  infants?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumItineraryStatusFieldUpdateOperationsInput | $Enums.ItineraryStatus
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inclusions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exclusions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUncheckedUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedUpdateManyWithoutItineraryNestedInput
 }
@@ -1361,6 +1512,7 @@ export type ItineraryUpdateWithoutAgencyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutItinerariesNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUpdateManyWithoutItineraryNestedInput
 }
@@ -1384,6 +1536,7 @@ export type ItineraryUncheckedUpdateWithoutAgencyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUncheckedUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedUpdateManyWithoutItineraryNestedInput
 }
@@ -1447,6 +1600,7 @@ export type ItineraryUpdateWithoutCustomerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agency?: Prisma.AgencyUpdateOneRequiredWithoutItinerariesNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUpdateManyWithoutItineraryNestedInput
 }
@@ -1470,6 +1624,7 @@ export type ItineraryUncheckedUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutSourceItineraryNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutSourceItineraryNestedInput
   days?: Prisma.ItineraryDayUncheckedUpdateManyWithoutItineraryNestedInput
   priceItems?: Prisma.ItineraryPriceItemUncheckedUpdateManyWithoutItineraryNestedInput
 }
@@ -1501,12 +1656,14 @@ export type ItineraryUncheckedUpdateManyWithoutCustomerInput = {
 
 export type ItineraryCountOutputType = {
   invoices: number
+  quotations: number
   days: number
   priceItems: number
 }
 
 export type ItineraryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   invoices?: boolean | ItineraryCountOutputTypeCountInvoicesArgs
+  quotations?: boolean | ItineraryCountOutputTypeCountQuotationsArgs
   days?: boolean | ItineraryCountOutputTypeCountDaysArgs
   priceItems?: boolean | ItineraryCountOutputTypeCountPriceItemsArgs
 }
@@ -1526,6 +1683,13 @@ export type ItineraryCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
  */
 export type ItineraryCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * ItineraryCountOutputType without action
+ */
+export type ItineraryCountOutputTypeCountQuotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationWhereInput
 }
 
 /**
@@ -1565,6 +1729,7 @@ export type ItinerarySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   invoices?: boolean | Prisma.Itinerary$invoicesArgs<ExtArgs>
+  quotations?: boolean | Prisma.Itinerary$quotationsArgs<ExtArgs>
   days?: boolean | Prisma.Itinerary$daysArgs<ExtArgs>
   priceItems?: boolean | Prisma.Itinerary$priceItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ItineraryCountOutputTypeDefaultArgs<ExtArgs>
@@ -1642,6 +1807,7 @@ export type ItineraryInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   invoices?: boolean | Prisma.Itinerary$invoicesArgs<ExtArgs>
+  quotations?: boolean | Prisma.Itinerary$quotationsArgs<ExtArgs>
   days?: boolean | Prisma.Itinerary$daysArgs<ExtArgs>
   priceItems?: boolean | Prisma.Itinerary$priceItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ItineraryCountOutputTypeDefaultArgs<ExtArgs>
@@ -1661,6 +1827,7 @@ export type $ItineraryPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     agency: Prisma.$AgencyPayload<ExtArgs>
     customer: Prisma.$CustomerPayload<ExtArgs>
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    quotations: Prisma.$QuotationPayload<ExtArgs>[]
     days: Prisma.$ItineraryDayPayload<ExtArgs>[]
     priceItems: Prisma.$ItineraryPriceItemPayload<ExtArgs>[]
   }
@@ -2080,6 +2247,7 @@ export interface Prisma__ItineraryClient<T, Null = never, ExtArgs extends runtim
   agency<T extends Prisma.AgencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgencyDefaultArgs<ExtArgs>>): Prisma.Prisma__AgencyClient<runtime.Types.Result.GetResult<Prisma.$AgencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   invoices<T extends Prisma.Itinerary$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotations<T extends Prisma.Itinerary$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   days<T extends Prisma.Itinerary$daysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$daysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItineraryDayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   priceItems<T extends Prisma.Itinerary$priceItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$priceItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItineraryPriceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2551,6 +2719,30 @@ export type Itinerary$invoicesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Itinerary.quotations
+ */
+export type Itinerary$quotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
+  orderBy?: Prisma.QuotationOrderByWithRelationInput | Prisma.QuotationOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationScalarFieldEnum | Prisma.QuotationScalarFieldEnum[]
 }
 
 /**

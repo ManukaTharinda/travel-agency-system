@@ -73,6 +73,21 @@ export type InvoiceItem = Prisma.InvoiceItemModel
  */
 export type InvoicePayment = Prisma.InvoicePaymentModel
 /**
+ * Model Quotation
+ * 
+ */
+export type Quotation = Prisma.QuotationModel
+/**
+ * Model QuotationItem
+ * 
+ */
+export type QuotationItem = Prisma.QuotationItemModel
+/**
+ * Model AgencyBillingSettings
+ * 
+ */
+export type AgencyBillingSettings = Prisma.AgencyBillingSettingsModel
+/**
  * Model Session
  * 
  */
